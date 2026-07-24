@@ -65,10 +65,10 @@ const Portfolio = () => {
     },
     {
       projectImage: projectImg3,
-      projectTitle: "Another Website",
+      projectTitle: "Aspor A-633",
       projectDescription:
-        "Made a full-stack e-commerce website using React for the frontend and Node.js for the backend. Implemented features like user authentication, product management, and payment integration.",
-      projectLink: "https://ratx-solutions.netlify.app/",
+        "Built with HTML, CSS, JS, possibly React or a JS framework . Static setup ensures high performance, low maintenance, and scalability. it is highly cinematic animated website.",
+      projectLink: "https://aspor-a-633.vercel.app/",
     },
   ];
 // =====================================================================//
