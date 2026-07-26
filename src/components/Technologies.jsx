@@ -3,19 +3,11 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faReact, faJs } from "@fortawesome/free-brands-svg-icons";
-<<<<<<< HEAD
 import { SiTailwindcss, SiHtml5 } from "react-icons/si";
 import materialUi from "../assets/images/materialui.png";
 import msWord from "../assets/images/msWord.png";
 import msExcel from "../assets/images/msExcel.png";
-=======
-import { SiTailwindcss, SiHtml5, SiExpress } from "react-icons/si";
-import materialUi from "../assets/images/materialui.png";
-import msWord from "../assets/images/msWord.png";
-import msExcel from "../assets/images/msExcel.png";
-import Access from "../assets/images/Access.png";
-import { FaNodeJs } from "react-icons/fa";
->>>>>>> 2cdd9d75d8f0b6e00c737ae179c8dc1b497e7340
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -47,11 +39,8 @@ const Technologies = () => {
       );
     });
   }, []);
-<<<<<<< HEAD
   //=================================================================//
-=======
-//=================================================================//
->>>>>>> 2cdd9d75d8f0b6e00c737ae179c8dc1b497e7340
+
 
   // ================== Swing Animation of Icons ===================
   const swingIcon = React.useRef([]);
@@ -85,7 +74,6 @@ const Technologies = () => {
   const myTechnologies = [
     {
       techIcon: () => (
-<<<<<<< HEAD
         <SiHtml5 color="#E34F26" className="w-12 h-12" />
       ),
       techTitle: "HTML",
@@ -100,31 +88,10 @@ const Technologies = () => {
       position: "top-20 right-20",
     },
 
-=======
-        <SiHtml5
-          color="#E34F26"
-          className="w-8 h-8 sm:w-7 sm:h-7 lg:w-8 lg:h-8"
-        />
-      ),
-      techTitle: "HTML",
-      Purpose: "Front End",
-    },
-    {
-      techIcon: () => (
-        <SiTailwindcss
-          color="#38BDF8"
-          className="w-8 h-8 sm:w-7 sm:h-7 lg:w-8 lg:h-8"
-        />
-      ),
-      techTitle: "Tailwind",
-      Purpose: "Front End",
-    },
->>>>>>> 2cdd9d75d8f0b6e00c737ae179c8dc1b497e7340
     {
       techIcon: () => (
         <FontAwesomeIcon
           icon={faJs}
-<<<<<<< HEAD
           color="#F7DF1E"
           className="w-12 h-12"
         />
@@ -132,21 +99,10 @@ const Technologies = () => {
       techTitle: "JavaScript",
       position: "bottom-20 left-32",
     },
-
-=======
-          className="w-8 h-8 sm:w-7 sm:h-7 lg:w-8 lg:h-8"
-          color="#F7DF1E"
-        />
-      ),
-      techTitle: "JavaScript",
-      Purpose: "Front End",
-    },
->>>>>>> 2cdd9d75d8f0b6e00c737ae179c8dc1b497e7340
     {
       techIcon: () => (
         <FontAwesomeIcon
           icon={faReact}
-<<<<<<< HEAD
           color="#61DAFB"
           className="w-12 h-12"
         />
@@ -154,108 +110,38 @@ const Technologies = () => {
       techTitle: "React",
       position: "bottom-16 right-40",
     },
-
-=======
-          className="w-8 h-8 sm:w-7 sm:h-7 lg:w-8 lg:h-8"
-          color="#61DAFB"
-        />
-      ),
-      techTitle: "React",
-      Purpose: "Front End",
-    },
->>>>>>> 2cdd9d75d8f0b6e00c737ae179c8dc1b497e7340
     {
       techIcon: () => (
         <img
           src={materialUi}
-<<<<<<< HEAD
           className="w-12 h-12 object-contain"
         />
       ),
       techTitle: "Material UI",
       position: "bottom-32 left-1/2",
-=======
-          alt="MaterialUI"
-          className="w-8 h-8 sm:w-7 sm:h-7 lg:w-8 lg:h-8 object-contain"
-        />
-      ),
-      techTitle: "MaterialUI",
-      Purpose: "Front End",
-    },
-
-    {
-       techIcon: () => (
-        <SiExpress
-          color="#93C745"
-          className="w-8 h-8 sm:w-7 sm:h-7 lg:w-8 lg:h-8"
-        />
-      ),
-      techTitle: "Express",
-      Purpose: "Back End",
-    },
-
-     {
-       techIcon: () => (
-        <FaNodeJs
-          color="#93C745"
-          className="w-8 h-8 sm:w-7 sm:h-7 lg:w-8 lg:h-8 font-extrabold"
-        />
-      ),
-      techTitle: "NodeJS",
-      Purpose: "Back End",
->>>>>>> 2cdd9d75d8f0b6e00c737ae179c8dc1b497e7340
     },
 
     {
       techIcon: () => (
         <img
           src={msExcel}
-<<<<<<< HEAD
           className="w-12 h-12 object-contain"
         />
       ),
       techTitle: "Excel",
       position: "top-28 left-96",
-=======
-          alt="Excel"
-          className="w-8 h-8 sm:w-7 sm:h-7 lg:w-8 lg:h-8 object-contain"
-        />
-      ),
-      techTitle: "Excel",
-      Purpose: "Data Entry",
->>>>>>> 2cdd9d75d8f0b6e00c737ae179c8dc1b497e7340
+
     },
 
     {
       techIcon: () => (
         <img
           src={msWord}
-<<<<<<< HEAD
           className="w-12 h-12 object-contain"
         />
       ),
       techTitle: "MS Word",
       position: "top-10 right-1/3",
-=======
-          alt="Word"
-          className="w-8 h-8 sm:w-7 sm:h-7 lg:w-8 lg:h-8 object-contain"
-        />
-      ),
-      techTitle: "WORD",
-      Purpose: "Data Entry",
-    },
-
-    {
-      techIcon: () => (
-        <img
-          src={Access}
-          alt="Access"
-          className="w-8 h-8 sm:w-7 sm:h-7 lg:w-8 lg:h-8 object-contain"
-        />
-      ),
-      techTitle: "Access",
-      Purpose: "Data Entry",
->>>>>>> 2cdd9d75d8f0b6e00c737ae179c8dc1b497e7340
     },
   ];
   // =============================================================//
@@ -271,8 +157,6 @@ const Technologies = () => {
           What Technologies I use
         </h1>
       </div>
-
-<<<<<<< HEAD
       <div className="relative w-full h-[500px] mt-10 mb-16 p-5 overflow-hidden">
 
         {myTechnologies.map((Technology, index) => (
@@ -329,23 +213,6 @@ const Technologies = () => {
           </div>
 
         ))}
-
-=======
-      <div className="w-full mt-10 mb-16 flex flex-wrap items-center justify-center gap-7">
-        {myTechnologies.map((Technology, index) => (
-          <div
-            key={index}
-            ref={scaleOutRef}
-            className="w-36 h-52 bg-card-bg p-6 rounded-full flex flex-col justify-center items-center gap-4 shadow-soft transition-border duration-300 border-[1.2px] border-transparent hover:border-text-primary hover:cursor-text"
-          >
-            <div ref={swingIconRef}>{Technology.techIcon()}</div>
-            <h1 className="text-text-primary text-xl mt-4 font-bold">
-              {Technology.techTitle}
-            </h1>
-            <p>{Technology.Purpose}</p>
-          </div>
-        ))}
->>>>>>> 2cdd9d75d8f0b6e00c737ae179c8dc1b497e7340
       </div>
     </section>
   );

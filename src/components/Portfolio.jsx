@@ -36,7 +36,7 @@ const Portfolio = () => {
           scrollTrigger: {
             start: "top 90%",
             trigger: el,
-            toggleActions: "play none none reverse",            
+            toggleActions: "play none none reverse",
           },
         },
       );
@@ -67,17 +67,13 @@ const Portfolio = () => {
       projectImage: projectImg3,
       projectTitle: "Aspor A-633",
       projectDescription:
-<<<<<<< HEAD
-        "Built with HTML, CSS, JS, possibly React or a JS framework. Static setup ensures high performance, low maintenance, and scalability. it is highly cinematic animated website.",
-=======
         "Built with HTML, CSS, JS, possibly React or a JS framework . Static setup ensures high performance, low maintenance, and scalability. it is highly cinematic animated website.",
->>>>>>> 2cdd9d75d8f0b6e00c737ae179c8dc1b497e7340
       projectLink: "https://aspor-a-633.vercel.app/",
     },
   ];
-// =====================================================================//
+  // =====================================================================//
 
-// ===================== JSX Return =========================//
+  // ===================== JSX Return =========================//
   return (
     <section id="Works" className="w-full p-2 sm:p-4 bg-card-bg">
       <div className="w-full p-2 mt-16 sm:p-4 flex flex-col justify-center items-center">
@@ -125,19 +121,17 @@ const Portfolio = () => {
                   View Live
                   <span className="relative w-5 h-5">
                     <ArrowForwardIcon
-                      className={`absolute top-0 left-0 transition-all duration-1000 ${
-                        currentIcon === index
+                      className={`absolute top-0 left-0 transition-all duration-1000 ${currentIcon === index
                           ? "opacity-0 transition-all duration-1000 -translate-x-2"
                           : "opacity-100 transition-all duration-1000 -translate-x-0"
-                      }`}
+                        }`}
                       fontSize="small"
                     />
                     <ArrowOutwardIcon
-                      className={`absolute top-0 left-0 transition-all duration-1000 ${
-                        currentIcon === index
+                      className={`absolute top-0 left-0 transition-all duration-1000 ${currentIcon === index
                           ? "opacity-100 transition-all duration-1000 -translate-x-0"
                           : "opacity-0 transition-all duration-1000 -translate-x-2"
-                      }`}
+                        }`}
                       fontSize="small"
                     />
                   </span>
