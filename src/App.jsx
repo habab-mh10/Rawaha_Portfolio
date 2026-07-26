@@ -70,10 +70,17 @@ const App = () => {
           <Hero currentTheme={currentTheme} />
           <About currentTheme={currentTheme} />
           <Services currentTheme={currentTheme} />
+<<<<<<< HEAD
           <Portfolio currentTheme={currentTheme} />
           <Resume currentTheme={currentTheme} />
           <Technologies currentTheme={currentTheme} />
           <Testimonial currentTheme={currentTheme} />
+=======
+          <Technologies currentTheme={currentTheme} />
+          <Resume currentTheme={currentTheme} />
+          <Testimonial currentTheme={currentTheme} />
+          <Portfolio currentTheme={currentTheme} />
+>>>>>>> 2cdd9d75d8f0b6e00c737ae179c8dc1b497e7340
           <Contact currentTheme={currentTheme} />
           <Footer currentTheme={currentTheme} />
         </div>

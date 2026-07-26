@@ -67,7 +67,11 @@ const Portfolio = () => {
       projectImage: projectImg3,
       projectTitle: "Aspor A-633",
       projectDescription:
+<<<<<<< HEAD
         "Built with HTML, CSS, JS, possibly React or a JS framework. Static setup ensures high performance, low maintenance, and scalability. it is highly cinematic animated website.",
+=======
+        "Built with HTML, CSS, JS, possibly React or a JS framework . Static setup ensures high performance, low maintenance, and scalability. it is highly cinematic animated website.",
+>>>>>>> 2cdd9d75d8f0b6e00c737ae179c8dc1b497e7340
       projectLink: "https://aspor-a-633.vercel.app/",
     },
   ];
