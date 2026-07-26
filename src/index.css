@@ -1,0 +1,70 @@
+@import url("https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================= */ /* LIGHT MODE ROOT */ /* ============================= */
+:root[data-theme="light"] {
+  /* Background */
+  /* Background */
+  --bg-gradient: linear-gradient(135deg, #faf9f6 0%, #f2efea 100%); /* Text */
+  --text-primary: #2b2b2b;
+  --text-secondary: #4a4a4ade; /* Accents */
+  --accent-primary: #e76f51;
+  --accent-secondary: #f4a261;
+  --accent-hover: #d65a3f; /* Muted */
+  --muted: #d8d3cc; /* Cards */
+  --card-bg: #ffffff;
+  --card-border: #e0dcd5; /* Glassmorphism */
+  --glass-bg: rgba(255, 255, 255, 0.35);
+  --glass-border: rgba(255, 255, 255, 0.25);
+  --glass-blur: blur(12px); /* Neomorphism */
+  --neo-bg: #f5f2ed;
+  --neo-shadow-light: #ffffff;
+  --neo-shadow-dark: #c9c5bf;
+  --neo-shadow: 6px 6px 12px var(--neo-shadow-dark),
+    -6px -6px 12px var(--neo-shadow-light); /* Shadows */
+  --shadow-soft: 0 10px 25px rgba(0, 0, 0, 0.08);
+  --shadow-float: 0 4px 12px rgba(231, 111, 81, 0.35);
+  --shadow-depth: 0 30px 60px rgba(0, 0, 0, 0.12);
+}
+/* =============================
+ */ /* DARK MODE ROOT */ /*
+  ============================= */
+:root[data-theme="dark"] {
+  /* Background */
+  --bg-gradient: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%); /* Text */
+  --text-primary: #e6e6e6;
+  --text-secondary: #b3b3b3b0; /* Accents */
+  --accent-primary: #e76f51;
+  --accent-secondary: #f4a261;
+  --accent-hover: #ff7a5f; /* Muted */
+  --muted: #6c6c6c; /* Cards */
+  --card-bg: #1f1e1d;
+  --card-border: #2a2927; /* Glassmorphism */
+  --glass-bg: rgba(30, 30, 30, 0.5);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-blur: blur(12px); /* Neomorphism */
+  --neo-bg: #1a1a1a;
+  --neo-shadow-light: #2a2a2a;
+  --neo-shadow-dark: #0d0d0d;
+  --neo-shadow: 5px 5px 10px var(--neo-shadow-dark),
+    -5px -5px 10px var(--neo-shadow-light); /* Shadows */
+  --shadow-soft: 0 10px 25px rgba(0, 0, 0, 0.45);
+  --shadow-float: 0 4px 12px rgba(231, 111, 81, 0.55);
+  --shadow-depth: 0 30px 60px rgba(0, 0, 0, 0.55);
+}
+* {
+  font-family: "Syne";
+}
+body {
+  background: var(--bg-gradient);
+  color: var(--text-primary);
+}
+
+html,
+body,
+#root {
+  scroll-behavior: smooth;
+  scroll-timeline: view();
+}
