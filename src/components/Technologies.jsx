@@ -12,36 +12,6 @@ import msExcel from "../assets/images/msExcel.png";
 gsap.registerPlugin(ScrollTrigger);
 
 const Technologies = () => {
-  // ================== Animation of parent Divs ===================//
-  const scaleOut = React.useRef([]);
-  scaleOut.current = [];
-  const scaleOutRef = (el) => {
-    if (el && !scaleOut.current.includes(el)) {
-      scaleOut.current.push(el);
-    }
-  };
-  React.useLayoutEffect(() => {
-    scaleOut.current.forEach((el) => {
-      gsap.fromTo(
-        el,
-        { scale: 0.4, opacity: 0 },
-        {
-          scale: 1,
-          opacity: 1,
-          duration: 1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: el,
-            start: "top 97%",
-            toggleActions: "play none none reverse",
-          },
-        }
-      );
-    });
-  }, []);
-  //=================================================================//
-
-
   // ================== Swing Animation of Icons ===================
   const swingIcon = React.useRef([]);
   swingIcon.current = [];
@@ -70,6 +40,31 @@ const Technologies = () => {
   }, []);
   // =============================================================//
 
+
+  // ================== Infinite Marquee Animation ===================//
+  const marqueeTrackRef = React.useRef(null);
+
+  React.useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      const track = marqueeTrackRef.current;
+      if (!track) return;
+
+      // The track contains TWO identical sets side-by-side.
+      // We translate the entire track left by exactly 50% (one full set width),
+      // then repeat infinitely — this creates the seamless loop.
+      gsap.to(track, {
+        xPercent: -50,          // move left by exactly half (one full set)
+        duration: 30,           // slow cinematic speed — adjust for taste
+        ease: "none",           // constant linear speed, no acceleration
+        repeat: -1,             // loop forever
+      });
+    }, marqueeTrackRef);
+
+    return () => ctx.revert();
+  }, []);
+  // =============================================================//
+
+
   // ================== Technologies Data ===================
   const myTechnologies = [
     {
@@ -77,7 +72,6 @@ const Technologies = () => {
         <SiHtml5 color="#E34F26" className="w-12 h-12" />
       ),
       techTitle: "HTML",
-      position: "top-5 left-10",
     },
 
     {
@@ -85,7 +79,6 @@ const Technologies = () => {
         <SiTailwindcss color="#38BDF8" className="w-12 h-12" />
       ),
       techTitle: "Tailwind CSS",
-      position: "top-20 right-20",
     },
 
     {
@@ -97,7 +90,6 @@ const Technologies = () => {
         />
       ),
       techTitle: "JavaScript",
-      position: "bottom-20 left-32",
     },
     {
       techIcon: () => (
@@ -108,7 +100,6 @@ const Technologies = () => {
         />
       ),
       techTitle: "React",
-      position: "bottom-16 right-40",
     },
     {
       techIcon: () => (
@@ -118,7 +109,6 @@ const Technologies = () => {
         />
       ),
       techTitle: "Material UI",
-      position: "bottom-32 left-1/2",
     },
 
     {
@@ -129,8 +119,6 @@ const Technologies = () => {
         />
       ),
       techTitle: "Excel",
-      position: "top-28 left-96",
-
     },
 
     {
@@ -141,33 +129,18 @@ const Technologies = () => {
         />
       ),
       techTitle: "MS Word",
-      position: "top-10 right-1/3",
     },
   ];
   // =============================================================//
 
-  // ================== JSX Return ===================
-  return (
-    <section id="Tech" className="w-full p-2 sm:p-4">
-      <div className="w-full p-2 mt-16 sm:p-4 flex flex-col justify-center items-center">
-        <p className="text-text-secondary uppercase text-sm sm:text-base">
-          Technologies
-        </p>
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight text-center mt-2 sm:mt-4">
-          What Technologies I use
-        </h1>
-      </div>
-      <div className="relative w-full h-[500px] mt-10 mb-16 p-5 overflow-hidden">
 
-        {myTechnologies.map((Technology, index) => (
-
-          <div
-            key={index}
-            ref={scaleOutRef}
-            className={`
-        absolute
-        ${Technology.position}
+  // ================== Render a single technology card ===================//
+  const renderCard = (Technology, index) => (
+    <div
+      key={index}
+      className={`
         group
+        flex-shrink-0
         flex
         items-center
         justify-center
@@ -182,14 +155,19 @@ const Technologies = () => {
         cursor-pointer
         transition-all
         duration-300
+        mx-6
+        sm:mx-8
+        md:mx-10
+        lg:mx-14
+        relative
       `}
-          >
-            <div ref={swingIconRef}>
-              {Technology.techIcon()}
-            </div>
+    >
+      <div ref={swingIconRef}>
+        {Technology.techIcon()}
+      </div>
 
-            <div
-              className="
+      <div
+        className="
         absolute
         -bottom-12
         opacity-0
@@ -205,14 +183,38 @@ const Technologies = () => {
         text-sm
         whitespace-nowrap
         "
-            >
-              {Technology.techTitle}
-            </div>
+      >
+        {Technology.techTitle}
+      </div>
+    </div>
+  );
+  // =============================================================//
 
 
-          </div>
+  // ================== JSX Return ===================
+  return (
+    <section id="Tech" className="w-full p-2 sm:p-4">
+      <div className="w-full p-2 mt-16 sm:p-4 flex flex-col justify-center items-center">
+        <p className="text-text-secondary uppercase text-sm sm:text-base">
+          Technologies
+        </p>
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight text-center mt-2 sm:mt-4">
+          What Technologies I use
+        </h1>
+      </div>
 
-        ))}
+      {/* ── Marquee Container ── */}
+      <div className="w-full mt-10 mb-16 py-10 overflow-hidden">
+        {/* ── Marquee Track: two identical sets side-by-side ── */}
+        <div
+          ref={marqueeTrackRef}
+          className="flex flex-nowrap items-center w-max"
+        >
+          {/* Set 1 — original */}
+          {myTechnologies.map((tech, i) => renderCard(tech, i))}
+          {/* Set 2 — duplicate for seamless loop */}
+          {myTechnologies.map((tech, i) => renderCard(tech, i + myTechnologies.length))}
+        </div>
       </div>
     </section>
   );
