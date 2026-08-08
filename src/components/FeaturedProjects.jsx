@@ -1,9 +1,10 @@
 import React, { useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import projectImg1 from "../assets/images/p1.png";
 import projectImg2 from "../assets/images/p2.png";
-import projectImg3 from "../assets/images/p3.png";
+import projectImg4 from "../assets/images/p4.png";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 
@@ -64,19 +65,12 @@ const Portfolio = () => {
       projectLink: "https://kite-eight-eta.vercel.app/",
     },
     {
-      projectImage: projectImg3,
-      projectTitle: "Aspor A-633",
+      projectImage: projectImg4,
+      projectTitle: "Demo Dashboard",
       projectDescription:
         "Built with HTML, CSS, JS, possibly React or a JS framework . Static setup ensures high performance, low maintenance, and scalability. it is highly cinematic animated website.",
-      projectLink: "https://aspor-a-633.vercel.app/",
+      projectLink: "https://demo-dashboard-seven-hazel.vercel.app/",
     },
-    {
-      projectImage: projectImg1,
-      projectTitle: "E-Commerce DEMO Dashboard",
-      projectDescription:
-        "Made a full-stack e-commerce website using React for the frontend and Node.js for the backend. Implemented features like user authentication, product management, and payment integration.",
-      projectLink: "https://minishopofrawaha.netlify.app/",
-    }
   ];
   // =====================================================================//
 
@@ -88,7 +82,7 @@ const Portfolio = () => {
           Portfolio
         </p>
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight text-center mt-2 sm:mt-4">
-          My Work 
+          My Works
         </h1>
       </div>
 
@@ -147,6 +141,15 @@ const Portfolio = () => {
             </div>
           </div>
         ))}
+      </div>
+      <div className="w-full flex items-center justify-center mb-10">
+        <Link
+          to="/portfolio"
+          className="inline-flex gap-2 items-center justify-center px-8 py-3 text-sm font-semibold text-text-primary border-[1px] border-[var(--accent-primary)] bg-[var(--accent-primary)] transition-all duration-[400ms] ease-in-out hover:text-text-primary hover:border-[var(--accent-hover)] hover:bg-transparent"
+        >
+          View Live
+          <ArrowForwardIcon className="w-4 h-4"/>
+        </Link>
       </div>
     </section>
   );

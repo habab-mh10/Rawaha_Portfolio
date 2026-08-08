@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faReact } from "@fortawesome/free-brands-svg-icons";
 import CodeIcon from "@mui/icons-material/Code";
 import WebAssetIcon from "@mui/icons-material/WebAsset";
-import DatasetIcon from "@mui/icons-material/Dataset";
+import StorageIcon from '@mui/icons-material/Storage';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -79,9 +79,9 @@ const Services = () => {
           }}
         />
       ),
-      title: "MERN Stack Web Development",
+      title: "Full-Stack Web Development (MERN Stack)",
       description:
-        "Developing scalable and high-performance full-stack web applications using MongoDB, Express.js, React, and Node.js with secure APIs and modern UI design.",
+        "Building scalable and high-performance full-stack web applications using MongoDB, Express.js, React, and Node.js with secure APIs and modern UI architecture.",
     },
     {
       icon: () => (
@@ -93,13 +93,13 @@ const Services = () => {
           }}
         />
       ),
-      title: "Responsive Website & UI/UX Design",
+      title: "Frontend Development (React & Next.js)",
       description:
-        "Designing clean, modern, and fully responsive websites with optimized performance, user-friendly interfaces, and cross-device compatibility.",
+        "Developing modern, responsive and high-performance user interfaces using React, Next.js, JavaScript and optimized UI/UX design principles.",
     },
     {
       icon: () => (
-        <DatasetIcon
+        <StorageIcon
           style={{
             fontSize: 50,
             marginTop: "1rem",
@@ -107,9 +107,9 @@ const Services = () => {
           }}
         />
       ),
-      title: "Excel Data Entry & MS Access Management",
+      title: "Backend Development & Database Management",
       description:
-        "Providing accurate Excel data entry, spreadsheet organization, data cleaning, and professional Microsoft Access database creation with tables, queries, forms, and reports.",
+        "Creating secure and scalable backend systems using Node.js, Express, REST APIs, MongoDB and SQL, along with data management and automation solutions.",
     },
   ];
 
@@ -117,13 +117,13 @@ const Services = () => {
 
   // ============================ JSX Return ==============================//
   return (
-    <section id="Services" className="w-full p-2 sm:p-4 mb-14">
+    <section id="Services" aria-labelledby="services-title" className="w-full p-2 sm:p-4 mb-14">
       <div className="w-full p-2 mt-16 sm:p-4 flex flex-col justify-center items-center">
         <p className="text-text-secondary uppercase text-sm sm:text-base">
           Services
         </p>
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight sm:leading-relaxed text-center mt-2 sm:mt-4">
-          Quality Services
+        <h1 id="services-title" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight sm:leading-relaxed text-center mt-2 sm:mt-4">
+          Web Development Services
         </h1>
         <div className="w-full lg:w-[95%] xl:w-[90%] mt-8 sm:mt-12 lg:mt-20 flex flex-col sm:flex-row flex-wrap justify-center gap-4 sm:gap-6 lg:gap-7">
           {servicesCards.map((serviceCard, index) => (
@@ -134,7 +134,9 @@ const Services = () => {
               onMouseLeave={() => HoverOut(index)}
               className="w-full sm:w-[31%] p-4 sm:p-6 lg:p-8 xl:p-9 bg-card-bg text-text-secondary shadow-soft flex flex-col items-start justify-start hover:text-text-primary hover:transform hover:scale-105 transition-all duration-300"
             >
-              <div ref={hoverRotateIcons}>{serviceCard.icon()}</div>
+              <div ref={hoverRotateIcons} aria-hidden="true">
+                {serviceCard.icon()}
+              </div>
               <h2 className="w-full text-lg text-text-primary sm:text-xl font-[500] mt-3 sm:mt-4 text-start">
                 {serviceCard.title}
               </h2>

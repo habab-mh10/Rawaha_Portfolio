@@ -70,7 +70,8 @@ const About = () => {
             <div className="w-full object-fill">
               <img
                 src={profileImg}
-                alt="profile-image"
+                alt="Muhammad Rawaha - Full-Stack Web Developer and Software Engineer"
+                loading="lazy"
                 className="w-full object-fill"
               />
             </div>
@@ -88,62 +89,85 @@ const About = () => {
             </div>
             <div className="flex justify-center items-center mt-4">
               <div className="flex gap-4 sm:gap-6">
-                <WhatsAppIcon
-                  sx={{
-                    fontSize: { xs: "36px", sm: "40px", md: "43px" },
-                    color: "var(--text-secondary)",
-                    padding: "8px",
-                    border: "1px solid var(--card-border)",
-                    cursor: "pointer",
-                    "&:hover": { color: "var(--text-primary)" },
-                  }}
-                  onClick={() => {
-                    window.open("https://wa.me/+923028053159");
-                  }}
-                />
-                <LinkedInIcon
-                  sx={{
-                    fontSize: { xs: "36px", sm: "40px", md: "43px" },
-                    color: "var(--text-secondary)",
-                    padding: "8px",
-                    border: "1px solid var(--card-border)",
-                    cursor: "pointer",
-                    "&:hover": { color: "var(--text-primary)" },
-                  }}
-                  onClick={() => {
-                    window.open(
-                      "https://www.linkedin.com/in/muhammad-rawaha-1ab54b34b/"
-                    );
-                  }}
-                />
-                <GitHubIcon
-                  sx={{
-                    fontSize: { xs: "36px", sm: "40px", md: "43px" },
-                    color: "var(--text-secondary)",
-                    padding: "8px",
-                    border: "1px solid var(--card-border)",
-                    cursor: "pointer",
-                    "&:hover": { color: "var(--text-primary)" },
-                  }}
-                  onClick={() => {
-                    window.open("https://github.com/Rawaha-mr11");
-                  }}
-                />
-                <InstagramIcon
-                  sx={{
-                    fontSize: { xs: "36px", sm: "40px", md: "43px" },
-                    color: "var(--text-secondary)",
-                    padding: "8px",
-                    border: "1px solid var(--card-border)",
-                    cursor: "pointer",
-                    "&:hover": { color: "var(--text-primary)" },
-                  }}
-                  onClick={() => {
-                    window.open(
-                      "https://www.instagram.com/muhammad_rawaha_mr11/"
-                    );
-                  }}
-                />
+                {/* ============= Whatsapp profile link ============== */}
+                <a
+                  href="https://wa.me/923028053159"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Muhammad Rawaha on WhatsApp"
+                >
+                  <WhatsAppIcon
+                    sx={{
+                      fontSize: { xs: "36px", sm: "40px", md: "43px" },
+                      color: "var(--text-secondary)",
+                      padding: "8px",
+                      border: "1px solid var(--card-border)",
+                      cursor: "pointer",
+                      "&:hover": { color: "var(--text-primary)" },
+                    }}
+                  />
+                </a>
+                {/* ============= LinkedIN profile link ============== */}
+                <a
+                  href="https://www.linkedin.com/in/muhammad-rawaha-1ab54b34b/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Muhammad Rawaha on LinkedIn"
+                >
+                  <LinkedInIcon
+                    sx={{
+                      fontSize: { xs: "36px", sm: "40px", md: "43px" },
+                      color: "var(--text-secondary)",
+                      padding: "8px",
+                      border: "1px solid var(--card-border)",
+                      cursor: "pointer",
+                      "&:hover": {
+                        color: "var(--text-primary)",
+                      },
+                    }}
+                  />
+                </a>
+                {/* ============= Github profile link ============== */}
+                <a
+                  href="https://github.com/Rawaha-mr11"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Muhammad Rawaha on GitHub"
+                >
+                  <GitHubIcon
+                    sx={{
+                      fontSize: { xs: "36px", sm: "40px", md: "43px" },
+                      color: "var(--text-secondary)",
+                      padding: "8px",
+                      border: "1px solid var(--card-border)",
+                      cursor: "pointer",
+                      "&:hover": {
+                        color: "var(--text-primary)",
+                      },
+                    }}
+                  />
+                </a>
+                {/* ============= instagram profile link ============== */}
+                <a
+                  href="https://www.instagram.com/muhammad_rawaha_mr11/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Muhammad Rawaha on Instagram"
+                >
+                  <InstagramIcon
+                    sx={{
+                      fontSize: { xs: "36px", sm: "40px", md: "43px" },
+                      color: "var(--text-secondary)",
+                      padding: "8px",
+                      border: "1px solid var(--card-border)",
+                      cursor: "pointer",
+                      "&:hover": {
+                        color: "var(--text-primary)",
+                      },
+                    }}
+                  />
+                </a>
+                
               </div>
             </div>
           </div>
@@ -156,13 +180,16 @@ const About = () => {
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mt-6 lg:mt-12 leading-tight">
               Hello, I'm Muhammad Rawaha,{" "}
               <span className="block sm:inline-block mt-2 sm:mt-0 px-1 border-card border-[1.3px] sm:border-r-0 align-middle">
+                Full-Stack
+              </span>{" "}
+              <span className="block sm:inline-block mt-2 sm:mt-0 px-1 border-card border-[1.3px] sm:border-l-0 align-middle">
                 Website
               </span>{" "}
               <span className="block sm:inline-block mt-2 sm:mt-0 px-1 border-card border-[1.3px] sm:border-l-0 sm:border-r-0 align-middle">
-                Developer and Data
+                Developer and
               </span>{" "}
-              <span className="block sm:inline-block mt-2 sm:mt-0 px-1 border-card border-[1.3px] sm:border-l-0 align-middle">
-                Specialist
+              <span className="block sm:inline-block mt-2 sm:mt-0 px-1 border-card border-[1.3px] sm:border-l-0 sm:border-r-0  align-middle">
+                Physical Therapist
               </span>{" "}
               Based in Pakistan
             </h1>
@@ -174,18 +201,18 @@ const About = () => {
               />
             </button>
 
-            <div className="flex flex-col sm:flex-row flex-wrap justify-between sm:justify-evenly mt-6 sm:mt-8 lg:mt-9 sm:gap-0">
+            <div className="flex flex-col sm:flex-row flex-wrap mt-6 sm:mt-8 lg:mt-9">
               <div className="w-full sm:w-1/2 whitespace-nowrap text-text-secondary text-base sm:text-md font-[500] leading-8 sm:leading-10 pl-4">
-                <li>MERN Stack Development</li>
-                <li>Web Design (Modern Interfaces)</li>
-                <li>UI / UX Designing</li>
-                <li>Mobile & Web App Development</li>
+                <li>MERN Stack Web Development</li>
+                <li>React & Next.js Development</li>
+                <li>Modern UI / UX Implementation</li>
+                <li>Responsive Web Development</li>
               </div>
               <div className="w-full sm:w-1/2 text-text-secondary text-base sm:text-md font-[500] leading-8 sm:leading-10 pl-4">
-                <li>Access DB Management</li>
-                <li>Excel Data Entry & Automation</li>
-                <li>Data Cleaning & Formatting</li>
-                <li>Data Analysis & Reporting</li>
+                <li>Node.js & Express Backend Development</li>
+                <li>MongoDB & SQL Database Development</li>
+                <li>REST API Development</li>
+                <li>Data Analysis & Automation</li>
               </div>
             </div>
           </div>

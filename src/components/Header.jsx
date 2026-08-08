@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
+import { ScrollSmoother } from "gsap/ScrollSmoother";
 import Theme from "./Theme";
 import Logo from "../assets/images/logo.png";
 
@@ -44,12 +45,25 @@ const Header = ({ currentTheme, changeTheme }) => {
   const toggleMenu = () => {
     setDropDownMenu((prev) => !prev);
   };
-  
+
+  const scrollToSection = (sectionId) => {
+    const target = document.getElementById(sectionId);
+    if (!target) return;
+
+    const smoother = ScrollSmoother.get();
+    if (smoother) {
+      smoother.scrollTo(target, true, "top top");
+      return;
+    }
+
+    target.scrollIntoView({ behavior: "smooth" });
+  };
+
 
   //================= JSX Return ==================//
   return (
     <>
-      <header className="sticky top-0 left-0 z-[999] min-h-[14vh] max-h-[18vh] h-[100%] bg-[var(--card-bg)] flex items-center justify-between shadow-soft px-10">
+      <header className="fixed top-0 left-0 w-full z-[999] min-h-[14vh] max-h-[18vh] h-[100%] bg-[var(--card-bg)] flex items-center justify-between shadow-soft px-10">
         <div className="text-4xl font-extrabold text-shadow-dept">
           <img
             src={Logo}
@@ -62,61 +76,36 @@ const Header = ({ currentTheme, changeTheme }) => {
             <ul className="flex list-none gap-9">
               <li
                 className={`leading-7 font-medium inline cursor-pointer relative before:content-[''] before:absolute before:left-0 before:-bottom-0 before:w-0 before:h-0.5 before:bg-[var(--muted)] before:transition-all before:duration-300 hover:before:w-full`}
-                onClick={() =>
-                  document
-                    .getElementById("Home")
-                    .scrollIntoView({ behavior: "smooth" })
-                }
+                onClick={() => scrollToSection("Home")}
               >
                 Home
               </li>
               <li
                 className={`leading-7 font-medium inline cursor-pointer relative before:content-[''] before:absolute before:left-0 before:-bottom-0 before:w-0 before:h-0.5 before:bg-[var(--muted)] before:transition-all before:duration-300 hover:before:w-full`}
-                onClick={() =>
-                  document
-                    .getElementById("About")
-                    .scrollIntoView({ behavior: "smooth" })
-                }
+                onClick={() => scrollToSection("About")}
               >
                 About
               </li>
               <li
                 className={`leading-7 font-medium inline cursor-pointer relative before:content-[''] before:absolute before:left-0 before:-bottom-0 before:w-0 before:h-0.5 before:bg-[var(--muted)] before:transition-all before:duration-300 hover:before:w-full`}
-                onClick={() =>
-                  document
-                    .getElementById("Services")
-                    .scrollIntoView({ behavior: "smooth" })
-                }
+                onClick={() => scrollToSection("Services")}
               >
                 Services
               </li>
               <li
                 className={`leading-7 font-medium inline cursor-pointer relative before:content-[''] before:absolute before:left-0 before:-bottom-0 before:w-0 before:h-0.5 before:bg-[var(--muted)] before:transition-all before:duration-300 hover:before:w-full`}
-                onClick={() =>
-                  document
-                    .getElementById("Resume")
-                    .scrollIntoView({ behavior: "smooth" })
-                }
+                onClick={() => scrollToSection("Resume")}
               >
                 Resume
               </li>
               <li
                 className={`leading-7 font-medium inline cursor-pointer relative before:content-[''] before:absolute before:left-0 before:-bottom-0 before:w-0 before:h-0.5 before:bg-[var(--muted)] before:transition-all before:duration-300 hover:before:w-full`}
-                onClick={() =>
-                  document
-                    .getElementById("Works")
-                    .scrollIntoView({ behavior: "smooth" })
-                }
-              >
+                onClick={() => scrollToSection("Works")}>
                 Portfolio
               </li>
               <li
                 className={`leading-7 font-medium inline cursor-pointer relative before:content-[''] before:absolute before:left-0 before:-bottom-0 before:w-0 before:h-0.5 before:bg-[var(--muted)] before:transition-all before:duration-300 hover:before:w-full`}
-                onClick={() =>
-                  document
-                    .getElementById("Contact")
-                    .scrollIntoView({ behavior: "smooth" })
-                }
+                onClick={() => scrollToSection("Contact")}
               >
                 Contact
               </li>
@@ -131,25 +120,21 @@ const Header = ({ currentTheme, changeTheme }) => {
               onClick={toggleMenu}
             >
               <span
-                className={`block h-1 w-full bg-[var(--muted)] rounded transition-all duration-300 ${
-                  dropDownMenu ? "-rotate-45 translate-y-2" : ""
-                } `}
+                className={`block h-1 w-full bg-[var(--muted)] rounded transition-all duration-300 ${dropDownMenu ? "-rotate-45 translate-y-2" : ""
+                  } `}
               ></span>
               <span
-                className={`block h-1 w-full bg-[var(--muted)] rounded transition-all duration-300 ${
-                  dropDownMenu ? "opacity-0" : ""
-                }`}
+                className={`block h-1 w-full bg-[var(--muted)] rounded transition-all duration-300 ${dropDownMenu ? "opacity-0" : ""
+                  }`}
               ></span>
               <span
-                className={`block h-1 w-full bg-[var(--muted)] rounded transition-all duration-300 ${
-                  dropDownMenu ? "rotate-45 -translate-y-2" : ""
-                }`}
+                className={`block h-1 w-full bg-[var(--muted)] rounded transition-all duration-300 ${dropDownMenu ? "rotate-45 -translate-y-2" : ""
+                  }`}
               ></span>
             </div>
             <div
-              className={`absolute h-56 bg-[var(--card-bg)] border-[1px] border-[var(--card-border)] p-4 bottom-0 top-[100%] right-8 overflow-hidden transition-all duration-[1500ms] z-40 ease ${
-                dropDownMenu ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-              }`}
+              className={`absolute h-56 bg-[var(--card-bg)] border-[1px] border-[var(--card-border)] p-4 bottom-0 top-[100%] right-8 overflow-hidden transition-all duration-[1500ms] z-40 ease ${dropDownMenu ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+                }`}
             >
               <ul className="w-44 grid gap-3 justify-center">
                 <li

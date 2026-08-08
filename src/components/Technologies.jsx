@@ -4,9 +4,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faReact, faJs } from "@fortawesome/free-brands-svg-icons";
 import { SiTailwindcss, SiHtml5 } from "react-icons/si";
-import materialUi from "../assets/images/materialui.png";
-import msWord from "../assets/images/msWord.png";
-import msExcel from "../assets/images/msExcel.png";
+import sql from "../assets/images/sql.png";
+import nextjs from "../assets/images/next.png";
+
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -89,7 +89,7 @@ const Technologies = () => {
           className="w-12 h-12"
         />
       ),
-      techTitle: "JavaScript",
+      techTitle: "Vanilla JS",
     },
     {
       techIcon: () => (
@@ -104,31 +104,20 @@ const Technologies = () => {
     {
       techIcon: () => (
         <img
-          src={materialUi}
+          src={nextjs}
           className="w-12 h-12 object-contain"
         />
       ),
-      techTitle: "Material UI",
+      techTitle: "Next.js",
     },
-
     {
       techIcon: () => (
         <img
-          src={msExcel}
+          src={sql}
           className="w-12 h-12 object-contain"
         />
       ),
-      techTitle: "Excel",
-    },
-
-    {
-      techIcon: () => (
-        <img
-          src={msWord}
-          className="w-12 h-12 object-contain"
-        />
-      ),
-      techTitle: "MS Word",
+      techTitle: "SQL DB",
     },
   ];
   // =============================================================//

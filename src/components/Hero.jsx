@@ -28,6 +28,7 @@ const Hero = () => {
     <>
       <section
         id="Home"
+        aria-labelledby="hero-title"
         className="w-full max-h-[86vh] mt-20 mb-28 flex items-center justify-center"
       >
         <div
@@ -52,13 +53,19 @@ const Hero = () => {
             className="text-[1rem] flex flex-wrap bg-[var(--glass-bg)] text-[var(--text-secondary)] shadow-soft p-4"
           >
             <li className="relative pl-3 whitespace-nowrap before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:w-[5px] before:h-[5px] before:bg-[var(--muted)] before:rounded-full">
-              Student of Dr of Physical Therapy
+              MERN Stack Development
             </li>
             <li className="ml-3 relative pl-3 whitespace-nowrap before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:w-[5px] before:h-[5px] before:bg-[var(--muted)] before:rounded-full">
-              MERN Stack Developer
+              React & Next.js Development
             </li>
             <li className="ml-3 relative pl-3 whitespace-nowrap before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:w-[5px] before:h-[5px] before:bg-[var(--muted)] before:rounded-full">
-              Data Specialist
+              Node.js & Express
+            </li>
+            <li className="ml-3 relative pl-3 whitespace-nowrap before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:w-[5px] before:h-[5px] before:bg-[var(--muted)] before:rounded-full">
+              Full-Stack Web Applications
+            </li>
+            <li className="ml-3 relative pl-3 whitespace-nowrap before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:w-[5px] before:h-[5px] before:bg-[var(--muted)] before:rounded-full">
+              Physical Therapist
             </li>
           </ul>
         </div>
