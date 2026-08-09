@@ -139,26 +139,36 @@ const Header = ({ currentTheme, changeTheme }) => {
               <ul className="w-44 grid gap-3 justify-center">
                 <li
                   className={`leading-7 font-medium inline cursor-pointer relative before:content-[''] before:absolute before:left-0 before:-bottom-0 before:w-0 before:h-0.5 before:bg-[var(--muted)] before:transition-all before:duration-300 hover:before:w-full`}
+                  onClick={() => scrollToSection("Home")}
                 >
                   Home
                 </li>
                 <li
                   className={`leading-7 font-medium inline cursor-pointer relative before:content-[''] before:absolute before:left-0 before:-bottom-0 before:w-0 before:h-0.5 before:bg-[var(--muted)] before:transition-all before:duration-300 hover:before:w-full`}
+                  onClick={() => scrollToSection("About")}
                 >
                   About
                 </li>
                 <li
                   className={`leading-7 font-medium inline cursor-pointer relative before:content-[''] before:absolute before:left-0 before:-bottom-0 before:w-0 before:h-0.5 before:bg-[var(--muted)] before:transition-all before:duration-300 hover:before:w-full`}
+                  onClick={() => scrollToSection("Services")}
                 >
                   Services
                 </li>
                 <li
                   className={`leading-7 font-medium inline cursor-pointer relative before:content-[''] before:absolute before:left-0 before:-bottom-0 before:w-0 before:h-0.5 before:bg-[var(--muted)] before:transition-all before:duration-300 hover:before:w-full`}
+                  onClick={() => scrollToSection("Resume")}
                 >
                   Resume
                 </li>
                 <li
                   className={`leading-7 font-medium inline cursor-pointer relative before:content-[''] before:absolute before:left-0 before:-bottom-0 before:w-0 before:h-0.5 before:bg-[var(--muted)] before:transition-all before:duration-300 hover:before:w-full`}
+                  onClick={() => scrollToSection("Works")}>
+                  Portfolio
+                </li>
+                <li
+                  className={`leading-7 font-medium inline cursor-pointer relative before:content-[''] before:absolute before:left-0 before:-bottom-0 before:w-0 before:h-0.5 before:bg-[var(--muted)] before:transition-all before:duration-300 hover:before:w-full`}
+                  onClick={() => scrollToSection("Contact")}
                 >
                   Contact
                 </li>
