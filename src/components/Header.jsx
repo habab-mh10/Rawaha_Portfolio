@@ -94,14 +94,14 @@ const Header = ({ currentTheme, changeTheme }) => {
               </li>
               <li
                 className={`leading-7 font-medium inline cursor-pointer relative before:content-[''] before:absolute before:left-0 before:-bottom-0 before:w-0 before:h-0.5 before:bg-[var(--muted)] before:transition-all before:duration-300 hover:before:w-full`}
-                onClick={() => scrollToSection("Resume")}
-              >
-                Resume
+                onClick={() => scrollToSection("Works")}>
+                Portfolio
               </li>
               <li
                 className={`leading-7 font-medium inline cursor-pointer relative before:content-[''] before:absolute before:left-0 before:-bottom-0 before:w-0 before:h-0.5 before:bg-[var(--muted)] before:transition-all before:duration-300 hover:before:w-full`}
-                onClick={() => scrollToSection("Works")}>
-                Portfolio
+                onClick={() => scrollToSection("Resume")}
+              >
+                Resume
               </li>
               <li
                 className={`leading-7 font-medium inline cursor-pointer relative before:content-[''] before:absolute before:left-0 before:-bottom-0 before:w-0 before:h-0.5 before:bg-[var(--muted)] before:transition-all before:duration-300 hover:before:w-full`}
@@ -157,14 +157,14 @@ const Header = ({ currentTheme, changeTheme }) => {
                 </li>
                 <li
                   className={`leading-7 font-medium inline cursor-pointer relative before:content-[''] before:absolute before:left-0 before:-bottom-0 before:w-0 before:h-0.5 before:bg-[var(--muted)] before:transition-all before:duration-300 hover:before:w-full`}
-                  onClick={() => scrollToSection("Resume")}
-                >
-                  Resume
+                  onClick={() => scrollToSection("Works")}>
+                  Portfolio
                 </li>
                 <li
                   className={`leading-7 font-medium inline cursor-pointer relative before:content-[''] before:absolute before:left-0 before:-bottom-0 before:w-0 before:h-0.5 before:bg-[var(--muted)] before:transition-all before:duration-300 hover:before:w-full`}
-                  onClick={() => scrollToSection("Works")}>
-                  Portfolio
+                  onClick={() => scrollToSection("Resume")}
+                >
+                  Resume
                 </li>
                 <li
                   className={`leading-7 font-medium inline cursor-pointer relative before:content-[''] before:absolute before:left-0 before:-bottom-0 before:w-0 before:h-0.5 before:bg-[var(--muted)] before:transition-all before:duration-300 hover:before:w-full`}
