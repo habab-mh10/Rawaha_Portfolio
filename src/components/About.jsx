@@ -1,7 +1,7 @@
 import React from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import CV from "../assets/Docs/MR_CV_2025.pdf"
+import CV from "../assets/Docs/MR_CV_2026.pdf"
 import profileImg from "../assets/images/profile.png";
 import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 import InstagramIcon from "@mui/icons-material/Instagram";
