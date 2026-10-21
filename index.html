@@ -35,11 +35,32 @@
 
   <!-- ================= FONT ================= -->
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <!-- DNS prefetch for critical external origins -->
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+  <link rel="dns-prefetch" href="https://res.cloudinary.com" />
 
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <!--
+    Load the font stylesheet non-render-blocking:
+    start with media="print" so the browser fetches it at low priority,
+    then switch to media="all" once it's loaded so it applies normally.
+  -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+    media="print"
+    onload="this.media='all'"
+  />
+  <!-- Fallback for browsers with JS disabled -->
+  <noscript>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </noscript>
 
   <!-- ================= OPEN GRAPH ================= -->
 
@@ -131,8 +152,14 @@
 
     gtag('config', 'G-FYXJL44JYV');
   </script>
-  <script type="module" crossorigin src="/assets/index-C12LQYZI.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-BYlHgHZD.css">
+  <script type="module" crossorigin src="/assets/index-iPrQdGw9.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/vendor-mui-pRhvmk9Q.js">
+  <link rel="modulepreload" crossorigin href="/assets/vendor-react-D6XdBdKS.js">
+  <link rel="modulepreload" crossorigin href="/assets/vendor-toast-Zf9ZELKp.js">
+  <link rel="modulepreload" crossorigin href="/assets/vendor-gsap-B9iU9BPp.js">
+  <link rel="modulepreload" crossorigin href="/assets/vendor-axios-BCn5QfZZ.js">
+  <link rel="stylesheet" crossorigin href="/assets/vendor-toast-tlSLHgLC.css">
+  <link rel="stylesheet" crossorigin href="/assets/index-DG0_UR_i.css">
 </head>
 
 <body>
