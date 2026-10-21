@@ -80,3 +80,32 @@ body,
     transform: scale(1) translateY(0);
   }
 }
+
+/* =================== Autocomplete / Autofill Override =================== */
+/*
+  Browsers force a white/blue background on :-webkit-autofill fields.
+  The only reliable cross-browser fix is overriding the background with a
+  large inset box-shadow in the card background color, and setting text color
+  via -webkit-text-fill-color (which beats the browser's own color).
+*/
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+textarea:-webkit-autofill:active,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus,
+select:-webkit-autofill:active {
+  /* Paint over the browser's autofill background */
+  -webkit-box-shadow: 0 0 0 1000px var(--card-bg) inset !important;
+  box-shadow: 0 0 0 1000px var(--card-bg) inset !important;
+  /* Keep the correct text color */
+  -webkit-text-fill-color: var(--text-primary) !important;
+  /* Maintain existing border radius / transition */
+  transition: background-color 9999s ease-in-out 0s;
+  caret-color: var(--text-primary);
+}

@@ -1,35 +1,14 @@
 import React, { useRef, useEffect, useState } from "react";
-import { gsap } from "gsap";
-import { ScrollSmoother } from "gsap/ScrollSmoother";
+import { Link, useLocation } from "react-router-dom";
 import Theme from "./Theme";
 import Logo from "../assets/images/logo.png";
 import SendModal from "./SendModal";
 
 const Header = ({ currentTheme, changeTheme }) => {
-  // ================= Header Animation on scrolling ================= //
-  // const headerRef = useRef(null);
-  // const [lastScrollTop, setLastScrollTop] = useState(0);
-
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     const scrollTop = window.scrollY;
-  //     if (!headerRef.current) return;
-
-  //     if (scrollTop > lastScrollTop && scrollTop > 20) {
-  //       gsap.to(headerRef.current, { y: "-90%", duration: 0.5, ease: "power2.out" });
-  //     } else {
-  //       gsap.to(headerRef.current, { y: "0%", duration: 0.5, ease: "power2.out" });
-  //     }
-  //     setLastScrollTop(scrollTop);
-  //   };
-  //   window.addEventListener("scroll", handleScroll);
-  //   return () => window.removeEventListener("scroll", handleScroll);
-  // }, [lastScrollTop]);
-  // ================================================================ //
-
-  //================= DropDown Menu ==================//
+  const location = useLocation();
   const [dropDownMenu, setDropDownMenu] = useState(false);
   const menuRef = useRef(null);
+  const [showOrderModal, setShowOrderModal] = useState(false);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -46,78 +25,33 @@ const Header = ({ currentTheme, changeTheme }) => {
     setDropDownMenu((prev) => !prev);
   };
 
-  const scrollToSection = (sectionId) => {
-    const target = document.getElementById(sectionId);
-    if (!target) return;
+  const isActive = (path) => location.pathname === path;
 
-    const smoother = ScrollSmoother.get();
-    if (smoother) {
-      smoother.scrollTo(target, true, "top top");
-      return;
-    }
-
-    target.scrollIntoView({ behavior: "smooth" });
-  };
-
-  //================= Order Now Modal ==================//
-  const [showOrderModal, setShowOrderModal] = useState(false);
-  //====================================================//
-
-  //================= JSX Return ==================//
   return (
     <>
       <header className="fixed top-0 left-0 w-full z-[999] min-h-[14vh] max-h-[18vh] h-[100%] bg-[var(--card-bg)] flex items-center justify-between shadow-soft px-10">
-        <div className="text-4xl font-extrabold text-shadow-dept">
-          <img
-            src={Logo}
-            alt=""
-            width={"70px"}
-          />
-        </div>
+        <Link to="/" className="text-4xl font-extrabold text-shadow-dept">
+          <img src={Logo} alt="Muhammad Rawaha Portfolio" width={"70px"} />
+        </Link>
         <nav className="flex items-center gap-6">
           <section className="hidden lg:flex items-center gap-2 border-2 px-10 py-1 rounded-full">
             <ul className="flex list-none gap-9 items-center">
-              <li
-                className={`leading-7 font-medium inline cursor-pointer relative before:content-[''] before:absolute before:left-0 before:-bottom-0 before:w-0 before:h-0.5 before:bg-[var(--muted)] before:transition-all before:duration-300 hover:before:w-full`}
-                onClick={() => scrollToSection("Home")}
-              >
-                Home
+              <li>
+                <Link to="/" className={`leading-7 font-medium inline cursor-pointer relative before:content-[''] before:absolute before:left-0 before:-bottom-0 before:h-0.5 before:bg-[var(--muted)] before:transition-all before:duration-300 hover:before:w-full ${isActive("/") || isActive("/home") ? "before:w-full" : "before:w-0"}`}>Home</Link>
               </li>
-              <li
-                className={`leading-7 font-medium inline cursor-pointer relative before:content-[''] before:absolute before:left-0 before:-bottom-0 before:w-0 before:h-0.5 before:bg-[var(--muted)] before:transition-all before:duration-300 hover:before:w-full`}
-                onClick={() => scrollToSection("About")}
-              >
-                About
+              <li>
+                <Link to="/About" className={`leading-7 font-medium inline cursor-pointer relative before:content-[''] before:absolute before:left-0 before:-bottom-0 before:h-0.5 before:bg-[var(--muted)] before:transition-all before:duration-300 hover:before:w-full ${isActive("/About") ? "before:w-full" : "before:w-0"}`}>About</Link>
               </li>
-              <li
-                className={`leading-7 font-medium inline cursor-pointer relative before:content-[''] before:absolute before:left-0 before:-bottom-0 before:w-0 before:h-0.5 before:bg-[var(--muted)] before:transition-all before:duration-300 hover:before:w-full`}
-                onClick={() => scrollToSection("Services")}
-              >
-                Services
+              <li>
+                <Link to="/myServices" className={`leading-7 font-medium inline cursor-pointer relative before:content-[''] before:absolute before:left-0 before:-bottom-0 before:h-0.5 before:bg-[var(--muted)] before:transition-all before:duration-300 hover:before:w-full ${isActive("/myServices") ? "before:w-full" : "before:w-0"}`}>Services</Link>
               </li>
-              <li
-                className={`leading-7 font-medium inline cursor-pointer relative before:content-[''] before:absolute before:left-0 before:-bottom-0 before:w-0 before:h-0.5 before:bg-[var(--muted)] before:transition-all before:duration-300 hover:before:w-full`}
-                onClick={() => scrollToSection("Works")}
-              >
-                Portfolio
+              <li>
+                <Link to="/myportfolio" className={`leading-7 font-medium inline cursor-pointer relative before:content-[''] before:absolute before:left-0 before:-bottom-0 before:h-0.5 before:bg-[var(--muted)] before:transition-all before:duration-300 hover:before:w-full ${isActive("/myportfolio") || isActive("/portfolio") ? "before:w-full" : "before:w-0"}`}>Portfolio</Link>
               </li>
-              <li
-                className={`leading-7 font-medium inline cursor-pointer relative before:content-[''] before:absolute before:left-0 before:-bottom-0 before:w-0 before:h-0.5 before:bg-[var(--muted)] before:transition-all before:duration-300 hover:before:w-full`}
-                onClick={() => scrollToSection("Resume")}
-              >
-                Resume
+              <li>
+                <Link to="/contact" className={`leading-7 font-medium inline cursor-pointer relative before:content-[''] before:absolute before:left-0 before:-bottom-0 before:h-0.5 before:bg-[var(--muted)] before:transition-all before:duration-300 hover:before:w-full ${isActive("/contact") ? "before:w-full" : "before:w-0"}`}>Contact</Link>
               </li>
-              <li
-                className={`leading-7 font-medium inline cursor-pointer relative before:content-[''] before:absolute before:left-0 before:-bottom-0 before:w-0 before:h-0.5 before:bg-[var(--muted)] before:transition-all before:duration-300 hover:before:w-full`}
-                onClick={() => scrollToSection("Contact")}
-              >
-                Contact
-              </li>
-              {/* ===== Order Now Button ===== */}
-              <li
-                className={`leading-7 font-medium inline cursor-pointer px-4 py-2 bg-accent-secondary hover:bg-accent-primary rounded-full hover:text-white transition-all duration-500`}
-                onClick={() => setShowOrderModal(true)}
-              >
+              <li className="leading-7 font-medium inline cursor-pointer px-4 py-2 bg-accent-secondary hover:bg-accent-primary rounded-full hover:text-white transition-all duration-500" onClick={() => setShowOrderModal(true)}>
                 Order Now
               </li>
             </ul>
@@ -133,7 +67,7 @@ const Header = ({ currentTheme, changeTheme }) => {
               <span
                 className={`block h-1 w-full bg-[var(--muted)] rounded transition-all duration-300 ${
                   dropDownMenu ? "-rotate-45 translate-y-2" : ""
-                } `}
+                }`}
               ></span>
               <span
                 className={`block h-1 w-full bg-[var(--muted)] rounded transition-all duration-300 ${
@@ -147,64 +81,23 @@ const Header = ({ currentTheme, changeTheme }) => {
               ></span>
             </div>
             <div
-              className={`absolute h-56 bg-[var(--card-bg)] border-[1px] border-[var(--card-border)] p-4 bottom-0 top-[100%] right-8 overflow-hidden transition-all duration-[1500ms] z-40 ease ${
+              className={`absolute h-72 bg-[var(--card-bg)] border-[1px] border-[var(--card-border)] p-4 bottom-0 top-[100%] right-8 overflow-hidden transition-all duration-[1500ms] z-40 ease ${
                 dropDownMenu ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
               }`}
             >
               <ul className="w-44 grid gap-3 justify-center">
-                <li
-                  className={`leading-7 font-medium inline cursor-pointer relative before:content-[''] before:absolute before:left-0 before:-bottom-0 before:w-0 before:h-0.5 before:bg-[var(--muted)] before:transition-all before:duration-300 hover:before:w-full`}
-                  onClick={() => scrollToSection("Home")}
-                >
-                  Home
-                </li>
-                <li
-                  className={`leading-7 font-medium inline cursor-pointer relative before:content-[''] before:absolute before:left-0 before:-bottom-0 before:w-0 before:h-0.5 before:bg-[var(--muted)] before:transition-all before:duration-300 hover:before:w-full`}
-                  onClick={() => scrollToSection("About")}
-                >
-                  About
-                </li>
-                <li
-                  className={`leading-7 font-medium inline cursor-pointer relative before:content-[''] before:absolute before:left-0 before:-bottom-0 before:w-0 before:h-0.5 before:bg-[var(--muted)] before:transition-all before:duration-300 hover:before:w-full`}
-                  onClick={() => scrollToSection("Services")}
-                >
-                  Services
-                </li>
-                <li
-                  className={`leading-7 font-medium inline cursor-pointer relative before:content-[''] before:absolute before:left-0 before:-bottom-0 before:w-0 before:h-0.5 before:bg-[var(--muted)] before:transition-all before:duration-300 hover:before:w-full`}
-                  onClick={() => scrollToSection("Works")}
-                >
-                  Portfolio
-                </li>
-                <li
-                  className={`leading-7 font-medium inline cursor-pointer relative before:content-[''] before:absolute before:left-0 before:-bottom-0 before:w-0 before:h-0.5 before:bg-[var(--muted)] before:transition-all before:duration-300 hover:before:w-full`}
-                  onClick={() => scrollToSection("Resume")}
-                >
-                  Resume
-                </li>
-                <li
-                  className={`leading-7 font-medium inline cursor-pointer relative before:content-[''] before:absolute before:left-0 before:-bottom-0 before:w-0 before:h-0.5 before:bg-[var(--muted)] before:transition-all before:duration-300 hover:before:w-full`}
-                  onClick={() => scrollToSection("Contact")}
-                >
-                  Contact
-                </li>
-                {/* ===== Order Now Button (mobile) ===== */}
-                <li
-                  className={`leading-7 font-medium inline cursor-pointer px-4 py-2 bg-accent-secondary hover:bg-accent-primary rounded-full hover:text-white transition-all duration-500 text-center`}
-                  onClick={() => {
-                    setDropDownMenu(false);
-                    setShowOrderModal(true);
-                  }}
-                >
-                  Order Now
-                </li>
+                <li><Link to="/" onClick={() => setDropDownMenu(false)} className="leading-7 font-medium inline cursor-pointer relative before:content-[''] before:absolute before:left-0 before:-bottom-0 before:w-0 before:h-0.5 before:bg-[var(--muted)] before:transition-all before:duration-300 hover:before:w-full">Home</Link></li>
+                <li><Link to="/About" onClick={() => setDropDownMenu(false)} className="leading-7 font-medium inline cursor-pointer relative before:content-[''] before:absolute before:left-0 before:-bottom-0 before:w-0 before:h-0.5 before:bg-[var(--muted)] before:transition-all before:duration-300 hover:before:w-full">About</Link></li>
+                <li><Link to="/myServices" onClick={() => setDropDownMenu(false)} className="leading-7 font-medium inline cursor-pointer relative before:content-[''] before:absolute before:left-0 before:-bottom-0 before:w-0 before:h-0.5 before:bg-[var(--muted)] before:transition-all before:duration-300 hover:before:w-full">Services</Link></li>
+                <li><Link to="/myportfolio" onClick={() => setDropDownMenu(false)} className="leading-7 font-medium inline cursor-pointer relative before:content-[''] before:absolute before:left-0 before:-bottom-0 before:w-0 before:h-0.5 before:bg-[var(--muted)] before:transition-all before:duration-300 hover:before:w-full">Portfolio</Link></li>
+                <li><Link to="/contact" onClick={() => setDropDownMenu(false)} className="leading-7 font-medium inline cursor-pointer relative before:content-[''] before:absolute before:left-0 before:-bottom-0 before:w-0 before:h-0.5 before:bg-[var(--muted)] before:transition-all before:duration-300 hover:before:w-full">Contact</Link></li>
+                <li className="leading-7 font-medium inline cursor-pointer px-4 py-2 bg-accent-secondary hover:bg-accent-primary rounded-full hover:text-white transition-all duration-500 text-center" onClick={() => { setDropDownMenu(false); setShowOrderModal(true); }}>Order Now</li>
               </ul>
             </div>
           </div>
         </nav>
       </header>
 
-      {/* =================== Order Now Modal (Portal) =================== */}
       <SendModal
         isOpen={showOrderModal}
         onClose={() => setShowOrderModal(false)}

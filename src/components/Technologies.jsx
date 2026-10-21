@@ -105,7 +105,10 @@ const Technologies = () => {
       techIcon: () => (
         <img
           src={nextjs}
+          loading="lazy"
+          decoding="async"
           className="w-12 h-12 object-contain"
+          alt="Next.js"
         />
       ),
       techTitle: "Next.js",
@@ -114,7 +117,10 @@ const Technologies = () => {
       techIcon: () => (
         <img
           src={sql}
+          loading="lazy"
+          decoding="async"
           className="w-12 h-12 object-contain"
+          alt="SQL"
         />
       ),
       techTitle: "SQL DB",

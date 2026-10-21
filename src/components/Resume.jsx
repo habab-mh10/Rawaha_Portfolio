@@ -44,25 +44,25 @@ const Resume = () => {
           className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-text-secondary"
         />
       ),
-      date: "2025 - present",
+      date: "Feb 2025 - Mar 2026",
       Institue: "SMIT",
-      discipline: "Web & App Development",
+      discipline: "Web & Mobile App Development",
     },
     {
       icon: () => (
         <HistoryEduIcon className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-text-secondary" />
       ),
-      date: "July 2025 - present",
+      date: "Mar 2026 - present",
       Institue: "Experience",
-      discipline: "Making Different Website for Portfolio Building up",
+      discipline: "Making Different Website to build up my own Portfolio",
     },
     {
       icon: () => (
         <HistoryEduIcon className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-text-secondary" />
       ),
-      date: "Nov 2020 - present",
-      Institue: "Data Entry",
-      discipline: "Miccrosoft Excel, powerPoint, Word & Access Database Management",
+      date: "Mar 2024 - Jun 2024",
+      Institue: "Graphic Designing",
+      discipline: "Adobe Illustrator and in 2025 Learnt Adobe XD also to make Web & Posters Designs",
     },
   ];
 

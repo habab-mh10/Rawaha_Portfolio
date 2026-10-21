@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { Button } from "@mui/material";
 import gsap from "gsap";
 
 const Hero = () => {
@@ -36,7 +35,7 @@ const Hero = () => {
           className="w-[90%] lg:w-[80%] lg:min-h-[60vh] lg2:h-[30vh] border-2 border-[var(--glass-border)] shadow-depth flex flex-col items-center justify-center p-10"
         >
           <p className="text-2xl lg:text-2xl md:text-sm">
-            Hello Everybody, I am
+            Hello Visitor, I am
           </p>
           <h1
             className="text-[clamp(2.5rem,5.5vw,5rem)] font-bold mb-4 text-text-primary fill-transparent"
@@ -63,6 +62,9 @@ const Hero = () => {
             </li>
             <li className="ml-3 relative pl-3 whitespace-nowrap before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:w-[5px] before:h-[5px] before:bg-[var(--muted)] before:rounded-full">
               Full-Stack Web Applications
+            </li>
+            <li className="ml-3 relative pl-3 whitespace-nowrap before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:w-[5px] before:h-[5px] before:bg-[var(--muted)] before:rounded-full">
+              Web and Graphics Designer
             </li>
             <li className="ml-3 relative pl-3 whitespace-nowrap before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:w-[5px] before:h-[5px] before:bg-[var(--muted)] before:rounded-full">
               Physical Therapist

@@ -1,8 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { submitMessage } from "../api/message.api";
+import { getPublicAboutProfile } from "../api/about.api";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import CallIcon from "@mui/icons-material/Call";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TextField from "@mui/material/TextField";
 import SendModal from "./SendModal";
 
@@ -77,6 +82,25 @@ const Contact = () => {
       "& input": {
         fontFamily: "Syne",
         color: "var(--text-primary)",
+        // Override browser autofill background
+        "&:-webkit-autofill": {
+          WebkitBoxShadow: "0 0 0 1000px var(--card-bg) inset",
+          WebkitTextFillColor: "var(--text-primary)",
+          caretColor: "var(--text-primary)",
+          transition: "background-color 9999s ease-in-out 0s",
+        },
+        "&:-webkit-autofill:hover": {
+          WebkitBoxShadow: "0 0 0 1000px var(--card-bg) inset",
+          WebkitTextFillColor: "var(--text-primary)",
+        },
+        "&:-webkit-autofill:focus": {
+          WebkitBoxShadow: "0 0 0 1000px var(--card-bg) inset",
+          WebkitTextFillColor: "var(--text-primary)",
+        },
+        "&:-webkit-autofill:active": {
+          WebkitBoxShadow: "0 0 0 1000px var(--card-bg) inset",
+          WebkitTextFillColor: "var(--text-primary)",
+        },
       },
       "& fieldset": {
         borderColor: "var(--text-secondary)",
@@ -107,15 +131,72 @@ const Contact = () => {
   });
 
   const [showModal, setShowModal] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+
+  /* ── fetch contact details from About profile ── */
+  const [contactInfo, setContactInfo] = useState({
+    phone: '+92 302 80 53159',
+    email: 'rawahamr11@gmail.com',
+    whatsapp: 'https://wa.me/923028053159',
+    linkedin: 'https://www.linkedin.com/in/muhammad-rawaha-1ab54b34b/',
+  });
+
+  useEffect(() => {
+    const fetchContact = async () => {
+      try {
+        const res = await getPublicAboutProfile();
+        const data = res.data;
+        if (data) {
+          setContactInfo({
+            phone:    data.phone    || '+92 302 80 53159',
+            email:    data.email    || 'rawahamr11@gmail.com',
+            whatsapp: data.socialLinks?.whatsapp || 'https://wa.me/923028053159',
+          });
+        }
+      } catch {
+        // keep defaults on error
+      }
+    };
+    fetchContact();
+  }, []);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // Save message to database
+  const saveMessageToDatabase = async () => {
+    try {
+      await submitMessage({
+        name: formData.name,
+        email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+      });
+    } catch (error) {
+      console.error('Failed to save message:', error);
+      // Don't block the user flow if database save fails
+    }
+  };
+
   // Open modal on form submit
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setShowModal(true);
+    setSubmitting(true);
+
+    try {
+      // Save to database first
+      await saveMessageToDatabase();
+      toast.success('Message sent successfully!');
+      
+      // Then show modal for WhatsApp/Email options
+      setShowModal(true);
+    } catch (error) {
+      console.error('Error:', error);
+      toast.error('Failed to send message. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const resetForm = () => {
@@ -141,7 +222,7 @@ ${formData.message}`;
 
   // =================== Send via Email ===================//
   const sendViaEmail = () => {
-    const mailtoURL = `mailto:muhammadrawaha15@gmail.com?subject=${encodeURIComponent(
+    const mailtoURL = `mailto:ownerrawiporfolio@rawaha.me?subject=${encodeURIComponent(
       formData.subject
     )}&body=${encodeURIComponent(
       `From: ${formData.name} <${formData.email}>\n\nMessage:\n${formData.message}`
@@ -173,11 +254,9 @@ ${formData.message}`;
                 className="text-text-secondary hover:text-text-primary border-b-[1.5px] border-card pb-6"
               >
                 <CallIcon fontSize="large" />
-                <h2 className="text-xl text-text-primary font-bold mt-5">
-                  Contact Number :
-                </h2>
-                <a href="tel:+923028053159" className="block mt-2">
-                  +92 302 80 53159
+                <h2 className="text-xl text-text-primary font-bold mt-5">Contact Number :</h2>
+                <a href={`tel:${contactInfo.phone.replace(/\s/g, '')}`} className="block mt-2">
+                  {contactInfo.phone}
                 </a>
               </div>
 
@@ -186,13 +265,24 @@ ${formData.message}`;
                 className="text-text-secondary hover:text-text-primary border-b-[1.5px] border-card pb-6"
               >
                 <MailOutlineIcon fontSize="large" />
-                <h2 className="text-xl text-text-primary font-bold mt-5">
-                  Email Us :
-                </h2>
-                <a href="mailto:rawahamr11@gmail.com" className="block mt-2">
-                  rawahamr11@gmail.com
+                <h2 className="text-xl text-text-primary font-bold mt-5">Email Us :</h2>
+                <a href={`mailto:${contactInfo.email}`} className="block mt-2">
+                  {contactInfo.email}
                 </a>
               </div>
+
+              {contactInfo.whatsapp && (
+                <div
+                  ref={leftFadeInElement}
+                  className="text-text-secondary hover:text-text-primary border-b-[1.5px] border-card pb-6"
+                >
+                  <WhatsAppIcon fontSize="large" />
+                  <h2 className="text-xl text-text-primary font-bold mt-5">WhatsApp :</h2>
+                  <a href={contactInfo.whatsapp} target="_blank" rel="noopener noreferrer" className="block mt-2">
+                    Chat on WhatsApp ↗
+                  </a>
+                </div>
+              )}
             </div>
           </div>
 
@@ -260,14 +350,16 @@ ${formData.message}`;
 
               <button
                 type="submit"
+                disabled={submitting}
                 className="w-fit mt-6 p-4 sm:p-5 text-sm font-semibold
-                  text-text-primary border border-[var(--accent-primary)]
+                  text-text-primary border-[1px] border-[var(--accent-primary)]
                   bg-[var(--accent-primary)]
-                  transition-all duration-300
+                  transition-all duration-[400ms] ease-in-out
                   hover:bg-transparent hover:border-[var(--accent-hover)]
-                  flex items-center gap-2"
+                  inline-flex items-center gap-2
+                  disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Message
+                {submitting ? 'Sending...' : 'Message'}
                 <MailOutlineIcon fontSize="small" />
               </button>
             </form>

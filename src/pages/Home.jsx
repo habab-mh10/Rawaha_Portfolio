@@ -10,6 +10,7 @@ import Services from "../components/Services";
 import Resume from "../components/Resume";
 import Testimonial from "../components/Testimonial";
 import FeaturedProjects from "../components/FeaturedProjects";
+import Pricing from "../components/Pricing";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
 import Technologies from "../components/Technologies";
@@ -73,6 +74,7 @@ const Home = () => {
           <FeaturedProjects currentTheme={currentTheme} />
           <Resume currentTheme={currentTheme} />
           <Technologies currentTheme={currentTheme} />
+          <Pricing currentTheme={currentTheme} />
           <Testimonial currentTheme={currentTheme} />
           <Contact currentTheme={currentTheme} />
           <Footer currentTheme={currentTheme} />
