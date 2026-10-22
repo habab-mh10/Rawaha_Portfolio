@@ -1,1 +1,0 @@
-import{a}from"./index-Bnb6FJqK.js";const t=async()=>(await a.get("/visiongoals/public")).data,e=async()=>(await a.get("/visiongoals/admin")).data,i=async s=>(await a.put("/visiongoals/admin",s)).data;export{e as a,t as g,i as u};
