@@ -1,14 +1,26 @@
 import React, { useRef, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Theme from "./Theme";
-import Logo from "../assets/images/logo.png";
+import LocalLogo from "../assets/images/logo.png";
 import SendModal from "./SendModal";
+import { getPublicAboutProfile } from "../api/about.api";
 
 const Header = ({ currentTheme, changeTheme }) => {
   const location = useLocation();
   const [dropDownMenu, setDropDownMenu] = useState(false);
   const menuRef = useRef(null);
   const [showOrderModal, setShowOrderModal] = useState(false);
+  const [logoUrl, setLogoUrl] = useState(LocalLogo);
+
+  /* ── Fetch logo from backend once on mount ── */
+  useEffect(() => {
+    getPublicAboutProfile()
+      .then((res) => {
+        const url = res?.data?.logo?.url;
+        if (url) setLogoUrl(url);
+      })
+      .catch(() => {/* keep local logo */});
+  }, []);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -16,22 +28,23 @@ const Header = ({ currentTheme, changeTheme }) => {
         setDropDownMenu(false);
       }
     };
-
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const toggleMenu = () => {
-    setDropDownMenu((prev) => !prev);
-  };
-
+  const toggleMenu = () => setDropDownMenu((prev) => !prev);
   const isActive = (path) => location.pathname === path;
 
   return (
     <>
       <header className="fixed top-0 left-0 w-full z-[999] min-h-[14vh] max-h-[18vh] h-[100%] bg-[var(--card-bg)] flex items-center justify-between shadow-soft px-10">
         <Link to="/" className="text-4xl font-extrabold text-shadow-dept">
-          <img src={Logo} alt="Muhammad Rawaha Portfolio" width={"70px"} />
+          <img
+            src={logoUrl}
+            alt="Muhammad Rawaha Portfolio"
+            width={"70px"}
+            onError={(e) => { e.target.src = LocalLogo; }}
+          />
         </Link>
         <nav className="flex items-center gap-6">
           <section className="hidden lg:flex items-center gap-2 border-2 px-10 py-1 rounded-full">
@@ -64,27 +77,11 @@ const Header = ({ currentTheme, changeTheme }) => {
               className="flex lg:hidden flex-col justify-between w-6 h-4 cursor-pointer"
               onClick={toggleMenu}
             >
-              <span
-                className={`block h-1 w-full bg-[var(--muted)] rounded transition-all duration-300 ${
-                  dropDownMenu ? "-rotate-45 translate-y-2" : ""
-                }`}
-              ></span>
-              <span
-                className={`block h-1 w-full bg-[var(--muted)] rounded transition-all duration-300 ${
-                  dropDownMenu ? "opacity-0" : ""
-                }`}
-              ></span>
-              <span
-                className={`block h-1 w-full bg-[var(--muted)] rounded transition-all duration-300 ${
-                  dropDownMenu ? "rotate-45 -translate-y-2" : ""
-                }`}
-              ></span>
+              <span className={`block h-1 w-full bg-[var(--muted)] rounded transition-all duration-300 ${dropDownMenu ? "-rotate-45 translate-y-2" : ""}`} />
+              <span className={`block h-1 w-full bg-[var(--muted)] rounded transition-all duration-300 ${dropDownMenu ? "opacity-0" : ""}`} />
+              <span className={`block h-1 w-full bg-[var(--muted)] rounded transition-all duration-300 ${dropDownMenu ? "rotate-45 -translate-y-2" : ""}`} />
             </div>
-            <div
-              className={`absolute h-72 bg-[var(--card-bg)] border-[1px] border-[var(--card-border)] p-4 bottom-0 top-[100%] right-8 overflow-hidden transition-all duration-[1500ms] z-40 ease ${
-                dropDownMenu ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-              }`}
-            >
+            <div className={`absolute h-72 bg-[var(--card-bg)] border-[1px] border-[var(--card-border)] p-4 bottom-0 top-[100%] right-8 overflow-hidden transition-all duration-[1500ms] z-40 ease ${dropDownMenu ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}>
               <ul className="w-44 grid gap-3 justify-center">
                 <li><Link to="/" onClick={() => setDropDownMenu(false)} className="leading-7 font-medium inline cursor-pointer relative before:content-[''] before:absolute before:left-0 before:-bottom-0 before:w-0 before:h-0.5 before:bg-[var(--muted)] before:transition-all before:duration-300 hover:before:w-full">Home</Link></li>
                 <li><Link to="/About" onClick={() => setDropDownMenu(false)} className="leading-7 font-medium inline cursor-pointer relative before:content-[''] before:absolute before:left-0 before:-bottom-0 before:w-0 before:h-0.5 before:bg-[var(--muted)] before:transition-all before:duration-300 hover:before:w-full">About</Link></li>

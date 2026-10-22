@@ -31,6 +31,7 @@ const Testimonials = lazy(() => import("./admin/pages/Testimonials"));
 const Messages     = lazy(() => import("./admin/pages/Messages"));
 const Team         = lazy(() => import("./admin/pages/Team"));
 const VisionGoals  = lazy(() => import("./admin/pages/VisionGoals"));
+const AboutAdmin   = lazy(() => import("./admin/pages/About"));
 
 // ── Auth guard (small, keep it synchronous) ──
 import ProtectedRoute from "./admin/components/ProtectedRoute";
@@ -215,10 +216,7 @@ const App = () => {
             path="about"
             element={
               <Suspense fallback={<AdminPageLoader />}>
-                <div className="p-6">
-                  <h1 className="text-3xl font-bold text-gray-800 mb-4">About Me Editor</h1>
-                  <p className="text-gray-500">Coming soon…</p>
-                </div>
+                <AboutAdmin />
               </Suspense>
             }
           />

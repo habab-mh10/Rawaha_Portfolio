@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import CV from "../assets/Docs/MR_CV_2026.pdf";
+import LocalCV from "../assets/Docs/MR_CV_2026.pdf";
 import profileImg from "../assets/images/profile.png";
 import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 import InstagramIcon from "@mui/icons-material/Instagram";
@@ -82,6 +82,9 @@ const About = () => {
 
   /* Always render — use live data when available, FALLBACK otherwise */
   const p = profile || FALLBACK;
+
+  /* CV URL — prefer Cloudinary, fall back to local bundle */
+  const cvUrl = p.cv?.url || LocalCV;
 
   /* Split skills into two columns */
   const skills = (p.skills && p.skills.length > 0) ? p.skills : FALLBACK.skills;
@@ -180,7 +183,7 @@ const About = () => {
 
             {/* CV button */}
             <button
-              onClick={() => window.open(CV, "_blank")}
+              onClick={() => window.open(cvUrl, "_blank")}
               className="w-fit mt-6 sm:mt-8 lg:mt-10 p-4 sm:p-5 text-sm sm:text-[14px] font-semibold text-text-primary border-[1px] border-[var(--accent-primary)] bg-[var(--accent-primary)] transition-all duration-[400ms] ease-in-out hover:text-text-primary hover:border-[var(--accent-hover)] hover:bg-transparent flex items-center justify-center gap-2"
             >
               Download CV

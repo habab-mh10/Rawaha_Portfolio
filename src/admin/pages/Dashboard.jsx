@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { getOrderStats } from '../../api/order.api';
 import { getProjectStats } from '../../api/project.api';
 import { getMessageStats } from '../../api/message.api';
@@ -6,9 +7,14 @@ import { toast } from 'react-toastify';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import WorkIcon from '@mui/icons-material/Work';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import MessageIcon from '@mui/icons-material/Message';
 import RefreshIcon from '@mui/icons-material/Refresh';
+import PersonIcon from '@mui/icons-material/Person';
+import ImageIcon from '@mui/icons-material/Image';
+import PriceChangeIcon from '@mui/icons-material/PriceChange';
+import StarIcon from '@mui/icons-material/Star';
+import GroupIcon from '@mui/icons-material/Group';
+import TrackChangesIcon from '@mui/icons-material/TrackChanges';
 
 const StatsCard = ({ title, value, icon: Icon, color }) => (
   <div className="bg-card-bg border border-card rounded-lg p-6 shadow-soft">
@@ -229,30 +235,55 @@ const Dashboard = () => {
         <div className="bg-card-bg border border-card rounded-lg p-6 shadow-soft">
           <h2 className="text-xl font-semibold text-text-primary mb-4">Quick Actions</h2>
           <div className="space-y-3">
-            <a
-              href="/admin/projects"
-              className="block px-4 py-2 bg-accent-primary text-white rounded-md hover:bg-accent-hover transition-colors text-center"
+            <Link
+              to="/admin/projects"
+              className="flex items-center gap-3 px-4 py-3 bg-[var(--accent-primary)] text-white rounded-md hover:bg-[var(--accent-hover)] transition-colors"
             >
-              Add New Project
-            </a>
-            <a
-              href="/admin/orders"
-              className="block px-4 py-2 bg-[var(--bg-primary)] border border-card text-text-primary rounded-md hover:bg-card transition-colors text-center"
+              <WorkIcon fontSize="small" /> Add New Project
+            </Link>
+            <Link
+              to="/admin/messages"
+              className="flex items-center gap-3 px-4 py-3 bg-[var(--bg-primary)] border border-card text-text-primary rounded-md hover:bg-card-bg transition-colors"
             >
-              View Orders {stats.pendingOrders > 0 && `(${stats.pendingOrders} pending)`}
-            </a>
-            <a
-              href="/admin/messages"
-              className="block px-4 py-2 bg-[var(--bg-primary)] border border-card text-text-primary rounded-md hover:bg-card transition-colors text-center"
+              <MessageIcon fontSize="small" />
+              Check Messages {stats.unreadMessages > 0 && <span className="ml-auto bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">{stats.unreadMessages}</span>}
+            </Link>
+            <Link
+              to="/admin/about"
+              className="flex items-center gap-3 px-4 py-3 bg-[var(--bg-primary)] border border-card text-text-primary rounded-md hover:bg-card-bg transition-colors"
             >
-              Check Messages {stats.unreadMessages > 0 && `(${stats.unreadMessages} unread)`}
-            </a>
-            <a
-              href="/admin/services"
-              className="block px-4 py-2 bg-[var(--bg-primary)] border border-card text-text-primary rounded-md hover:bg-card transition-colors text-center"
+              <PersonIcon fontSize="small" /> Edit About Me / Upload Logo &amp; CV
+            </Link>
+            <Link
+              to="/admin/visiongoals"
+              className="flex items-center gap-3 px-4 py-3 bg-[var(--bg-primary)] border border-card text-text-primary rounded-md hover:bg-card-bg transition-colors"
             >
-              Manage Services
-            </a>
+              <TrackChangesIcon fontSize="small" /> Edit Vision &amp; Goals
+            </Link>
+            <Link
+              to="/admin/pricing"
+              className="flex items-center gap-3 px-4 py-3 bg-[var(--bg-primary)] border border-card text-text-primary rounded-md hover:bg-card-bg transition-colors"
+            >
+              <PriceChangeIcon fontSize="small" /> Manage Pricing
+            </Link>
+            <Link
+              to="/admin/testimonials"
+              className="flex items-center gap-3 px-4 py-3 bg-[var(--bg-primary)] border border-card text-text-primary rounded-md hover:bg-card-bg transition-colors"
+            >
+              <StarIcon fontSize="small" /> Manage Testimonials
+            </Link>
+            <Link
+              to="/admin/team"
+              className="flex items-center gap-3 px-4 py-3 bg-[var(--bg-primary)] border border-card text-text-primary rounded-md hover:bg-card-bg transition-colors"
+            >
+              <GroupIcon fontSize="small" /> Manage Team
+            </Link>
+            <Link
+              to="/admin/portfolio"
+              className="flex items-center gap-3 px-4 py-3 bg-[var(--bg-primary)] border border-card text-text-primary rounded-md hover:bg-card-bg transition-colors"
+            >
+              <ImageIcon fontSize="small" /> View Portfolio
+            </Link>
           </div>
         </div>
       </div>
