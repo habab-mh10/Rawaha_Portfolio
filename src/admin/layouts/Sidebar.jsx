@@ -16,16 +16,16 @@ const CLOUDINARY_LOGO = 'https://res.cloudinary.com/myownportfolio/image/upload/
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
   const navItems = [
-    { name: 'Dashboard',    path: '/admin/dashboard',    icon: DashboardIcon },
-    { name: 'Projects',     path: '/admin/projects',     icon: WorkIcon },
-    { name: 'Pricing',      path: '/admin/pricing',      icon: DesignServicesIcon },
-    { name: 'Testimonials', path: '/admin/testimonials', icon: StarIcon },
-    { name: 'Messages',     path: '/admin/messages',     icon: MessageIcon },
-    { name: 'Orders',       path: '/admin/orders',       icon: ShoppingCartIcon },
-    { name: 'Technologies', path: '/admin/technologies', icon: CodeIcon },
-    { name: 'About Me',     path: '/admin/about',        icon: InfoIcon },
-    { name: 'Team',         path: '/admin/team',         icon: GroupIcon },
-    { name: 'Homepage',     path: '/admin/homepage',     icon: HomeIcon },
+    { name: 'Dashboard',    path: '/secret/admin/dashboard',    icon: DashboardIcon },
+    { name: 'Projects',     path: '/secret/admin/projects',     icon: WorkIcon },
+    { name: 'Pricing',      path: '/secret/admin/pricing',      icon: DesignServicesIcon },
+    { name: 'Testimonials', path: '/secret/admin/testimonials', icon: StarIcon },
+    { name: 'Messages',     path: '/secret/admin/messages',     icon: MessageIcon },
+    { name: 'Orders',       path: '/secret/admin/orders',       icon: ShoppingCartIcon },
+    { name: 'Technologies', path: '/secret/admin/technologies', icon: CodeIcon },
+    { name: 'About Me',     path: '/secret/admin/about',        icon: InfoIcon },
+    { name: 'Team',         path: '/secret/admin/team',         icon: GroupIcon },
+    { name: 'Homepage',     path: '/secret/admin/homepage',     icon: HomeIcon },
   ];
 
   return (

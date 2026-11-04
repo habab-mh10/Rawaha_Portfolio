@@ -13,7 +13,7 @@ const Topbar = ({ toggleSidebar }) => {
 
   const handleLogout = async () => {
     await logout();
-    navigate('/admin/login');
+    navigate('/secret/admin/login');
   };
 
   const goToPublicSite = () => {

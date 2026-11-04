@@ -150,8 +150,12 @@ export const createProject = async (req, res, next) => {
     } = req.body;
 
     // Validate required fields
-    if (!title || !description || !category || !liveUrl) {
-      return errorResponse(res, 400, 'Please provide title, description, category, and live URL');
+    const OPTIONAL_LIVEURL_CATEGORIES = ['ADS & Graphic Designing', 'Advertisement'];
+    if (!title || !description || !category) {
+      return errorResponse(res, 400, 'Please provide title, description, and category');
+    }
+    if (!liveUrl && !OPTIONAL_LIVEURL_CATEGORIES.includes(category)) {
+      return errorResponse(res, 400, 'Please provide a live URL for this project type');
     }
 
     // Handle technologies array from FormData

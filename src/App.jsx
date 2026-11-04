@@ -114,7 +114,7 @@ const App = () => {
         {/* ═══════════════ ADMIN ROUTES ═══════════════ */}
 
         <Route 
-          path="/admin/login" 
+          path="/secret/admin/login" 
           element={
             <Suspense fallback={<AdminPageLoader />}>
               <Login />
@@ -123,7 +123,7 @@ const App = () => {
         />
 
         <Route
-          path="/admin"
+          path="/secret/admin"
           element={
             <Suspense fallback={<AdminPageLoader />}>
               <ProtectedRoute>
@@ -132,7 +132,7 @@ const App = () => {
             </Suspense>
           }
         >
-          <Route index element={<Navigate to="/admin/dashboard" replace />} />
+          <Route index element={<Navigate to="/secret/admin/dashboard" replace />} />
           <Route 
             path="dashboard" 
             element={

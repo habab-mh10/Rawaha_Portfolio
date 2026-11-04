@@ -224,7 +224,7 @@ const Dashboard = () => {
           </div>
           {stats.unreadMessages > 0 && (
             <a
-              href="/admin/messages"
+              href="/secret/admin/messages"
               className="mt-4 block w-full px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors text-center"
             >
               View {stats.unreadMessages} Unread Message{stats.unreadMessages !== 1 ? 's' : ''}
@@ -235,53 +235,29 @@ const Dashboard = () => {
         <div className="bg-card-bg border border-card rounded-lg p-6 shadow-soft">
           <h2 className="text-xl font-semibold text-text-primary mb-4">Quick Actions</h2>
           <div className="space-y-3">
-            <Link
-              to="/admin/projects"
-              className="flex items-center gap-3 px-4 py-3 bg-[var(--accent-primary)] text-white rounded-md hover:bg-[var(--accent-hover)] transition-colors"
-            >
+            <Link to="/secret/admin/projects"     className="flex items-center gap-3 px-4 py-3 bg-[var(--accent-primary)] text-white rounded-md hover:bg-[var(--accent-hover)] transition-colors">
               <WorkIcon fontSize="small" /> Add New Project
             </Link>
-            <Link
-              to="/admin/messages"
-              className="flex items-center gap-3 px-4 py-3 bg-[var(--bg-primary)] border border-card text-text-primary rounded-md hover:bg-card-bg transition-colors"
-            >
+            <Link to="/secret/admin/messages"     className="flex items-center gap-3 px-4 py-3 bg-[var(--bg-primary)] border border-card text-text-primary rounded-md hover:bg-card-bg transition-colors">
               <MessageIcon fontSize="small" />
               Check Messages {stats.unreadMessages > 0 && <span className="ml-auto bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">{stats.unreadMessages}</span>}
             </Link>
-            <Link
-              to="/admin/about"
-              className="flex items-center gap-3 px-4 py-3 bg-[var(--bg-primary)] border border-card text-text-primary rounded-md hover:bg-card-bg transition-colors"
-            >
+            <Link to="/secret/admin/about"        className="flex items-center gap-3 px-4 py-3 bg-[var(--bg-primary)] border border-card text-text-primary rounded-md hover:bg-card-bg transition-colors">
               <PersonIcon fontSize="small" /> Edit About Me / Upload Logo &amp; CV
             </Link>
-            <Link
-              to="/admin/visiongoals"
-              className="flex items-center gap-3 px-4 py-3 bg-[var(--bg-primary)] border border-card text-text-primary rounded-md hover:bg-card-bg transition-colors"
-            >
+            <Link to="/secret/admin/visiongoals"  className="flex items-center gap-3 px-4 py-3 bg-[var(--bg-primary)] border border-card text-text-primary rounded-md hover:bg-card-bg transition-colors">
               <TrackChangesIcon fontSize="small" /> Edit Vision &amp; Goals
             </Link>
-            <Link
-              to="/admin/pricing"
-              className="flex items-center gap-3 px-4 py-3 bg-[var(--bg-primary)] border border-card text-text-primary rounded-md hover:bg-card-bg transition-colors"
-            >
+            <Link to="/secret/admin/pricing"      className="flex items-center gap-3 px-4 py-3 bg-[var(--bg-primary)] border border-card text-text-primary rounded-md hover:bg-card-bg transition-colors">
               <PriceChangeIcon fontSize="small" /> Manage Pricing
             </Link>
-            <Link
-              to="/admin/testimonials"
-              className="flex items-center gap-3 px-4 py-3 bg-[var(--bg-primary)] border border-card text-text-primary rounded-md hover:bg-card-bg transition-colors"
-            >
+            <Link to="/secret/admin/testimonials" className="flex items-center gap-3 px-4 py-3 bg-[var(--bg-primary)] border border-card text-text-primary rounded-md hover:bg-card-bg transition-colors">
               <StarIcon fontSize="small" /> Manage Testimonials
             </Link>
-            <Link
-              to="/admin/team"
-              className="flex items-center gap-3 px-4 py-3 bg-[var(--bg-primary)] border border-card text-text-primary rounded-md hover:bg-card-bg transition-colors"
-            >
+            <Link to="/secret/admin/team"         className="flex items-center gap-3 px-4 py-3 bg-[var(--bg-primary)] border border-card text-text-primary rounded-md hover:bg-card-bg transition-colors">
               <GroupIcon fontSize="small" /> Manage Team
             </Link>
-            <Link
-              to="/admin/portfolio"
-              className="flex items-center gap-3 px-4 py-3 bg-[var(--bg-primary)] border border-card text-text-primary rounded-md hover:bg-card-bg transition-colors"
-            >
+            <Link to="/myportfolio"               className="flex items-center gap-3 px-4 py-3 bg-[var(--bg-primary)] border border-card text-text-primary rounded-md hover:bg-card-bg transition-colors">
               <ImageIcon fontSize="small" /> View Portfolio
             </Link>
           </div>

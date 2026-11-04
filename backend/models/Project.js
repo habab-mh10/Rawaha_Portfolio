@@ -24,7 +24,17 @@ const projectSchema = new mongoose.Schema(
     category: {
       type: String,
       required: [true, 'Project category is required'],
-      enum: ['Web Application', 'E-Commerce', 'Landing Page', 'Dashboard', 'Mobile App', 'API', 'Other'],
+      enum: [
+        'Web Application',
+        'E-Commerce',
+        'Landing Page',
+        'Dashboard',
+        'Mobile App',
+        'API',
+        'ADS & Graphic Designing',
+        'Advertisement',
+        'Other',
+      ],
     },
     technologies: [
       {

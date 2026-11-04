@@ -36,8 +36,8 @@ axiosInstance.interceptors.response.use(
       localStorage.removeItem('adminToken');
       localStorage.removeItem('adminUser');
       // Only redirect if on admin page
-      if (window.location.pathname.startsWith('/admin')) {
-        window.location.href = '/admin/login';
+      if (window.location.pathname.startsWith('/secret/admin')) {
+        window.location.href = '/secret/admin/login';
       }
     }
     return Promise.reject(error);

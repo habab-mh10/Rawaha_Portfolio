@@ -370,6 +370,7 @@ const Projects = () => {
                     <option value="Mobile App">Mobile App</option>
                     <option value="API">API</option>
                     <option value="ADS & Graphic Designing">ADS & Graphic Designing</option>
+                    <option value="Advertisement">Advertisement</option>
                     <option value="Other">Other</option>
                   </select>
                 </div>
@@ -377,7 +378,7 @@ const Projects = () => {
                 {/* Live URL */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Live URL {formData.category === 'ADS & Graphic Designing' ? 
+                    Live URL {['ADS & Graphic Designing', 'Advertisement'].includes(formData.category) ? 
                       <span className="text-gray-400 font-normal">(optional - opens in portfolio)</span> : 
                       <span className="text-red-500">*</span>
                     }
@@ -387,14 +388,14 @@ const Projects = () => {
                     name="liveUrl"
                     value={formData.liveUrl}
                     onChange={handleInputChange}
-                    required={formData.category !== 'ADS & Graphic Designing'}
-                    placeholder={formData.category === 'ADS & Graphic Designing' ? 
+                    required={!['ADS & Graphic Designing', 'Advertisement'].includes(formData.category)}
+                    placeholder={['ADS & Graphic Designing', 'Advertisement'].includes(formData.category) ? 
                       "Optional - leave empty to open in portfolio" : 
                       "https://your-project.com"
                     }
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[var(--accent-primary)]"
                   />
-                  {formData.category === 'ADS & Graphic Designing' && (
+                  {['ADS & Graphic Designing', 'Advertisement'].includes(formData.category) && (
                     <p className="text-xs text-gray-500 mt-1">
                       💡 Leave empty to display this project in a lightbox within your portfolio instead of linking to an external site
                     </p>

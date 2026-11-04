@@ -16,7 +16,7 @@ gsap.registerPlugin(ScrollTrigger);
 /* Fallback static content */
 const FALLBACK = {
   name: "Muhammad Rawaha",
-  headline: "Full-Stack Website Developer and Physical Therapist",
+  headline: "Full-Stack Website Developer and Graphic Designer",
   biography: "I'm a passionate Full-Stack Developer based in Pakistan, specializing in building modern, high-performance web applications using the MERN stack. I combine technical expertise with creative design to deliver seamless digital experiences — from pixel-perfect UIs to robust backend APIs.",
   skills: [
     "MERN Stack Web Development",

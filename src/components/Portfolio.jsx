@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useMemo } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { getProjects } from "../api/project.api";
@@ -11,6 +11,83 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import ProjectDetailModal from "./ProjectDetailModal";
 
 gsap.registerPlugin(ScrollTrigger);
+
+/* ─── filter definitions (shared with FeaturedProjects) ─── */
+const FILTERS = [
+  { id: "all",     label: "All" },
+  { id: "web",     label: "Website Development" },
+  { id: "graphic", label: "Graphic Designing" },
+  { id: "ads",     label: "Advertisements" },
+];
+
+/**
+ * Primary: exact match on the project's category field (case-insensitive).
+ * Secondary: keyword scan across the technologies array as a fallback.
+ */
+const CATEGORY_MAP = {
+  web: new Set([
+    "web application",
+    "e-commerce",
+    "landing page",
+    "dashboard",
+    "mobile app",
+    "api",
+  ]),
+  graphic: new Set([
+    "ads & graphic designing",
+    "graphic design",
+    "graphic designing",
+  ]),
+  ads: new Set([
+    "advertisement",
+    "advertisements",
+  ]),
+};
+
+const TECH_KEYWORDS = {
+  web: [
+    "react", "vue", "angular", "next.js", "nextjs", "nuxt",
+    "html", "css", "javascript", "typescript", "node.js", "nodejs",
+    "express", "mern", "mean", "php", "laravel", "django",
+    "frontend", "backend", "full-stack", "fullstack", "web",
+    "mongodb", "mysql", "postgresql", "tailwind", "bootstrap",
+  ],
+  graphic: [
+    "graphic design", "graphic designing", "logo design", "logo",
+    "branding", "poster design", "poster", "illustration",
+    "typography", "ui design", "ux design", "ui/ux",
+    "adobe illustrator", "illustrator", "photoshop", "figma",
+    "canva", "social media design", "print design", "visual identity",
+    "motion graphics",
+  ],
+  ads: [
+    "advertisement", "advertising", "ad design", "ad campaign",
+    "promotional design", "marketing campaign", "product advertisement",
+    "digital marketing", "marketing", "campaign", "promotion",
+    "banner ad", "display ad", "social media ad",
+  ],
+};
+
+const getProjectFilters = (project) => {
+  const cat   = (project.category || "").toLowerCase().trim();
+  const techs = (project.technologies || []).map((t) => t.toLowerCase().trim());
+
+  const matched = new Set(["all"]);
+
+  for (const filterId of ["web", "graphic", "ads"]) {
+    if (CATEGORY_MAP[filterId].has(cat)) {
+      matched.add(filterId);
+      continue;
+    }
+    const keywords = TECH_KEYWORDS[filterId];
+    const hits = techs.some((tech) =>
+      keywords.some((kw) => tech === kw || tech.includes(kw) || kw.includes(tech))
+    );
+    if (hits) matched.add(filterId);
+  }
+
+  return matched;
+};
 
 /* ─── static fallback shown only when the backend is unreachable ─── */
 const FALLBACK = [
@@ -25,6 +102,7 @@ const FALLBACK = [
     category:           "E-Commerce",
     technologies:       ["React", "Node.js", "MongoDB"],
     fullDescription:    "Full-stack e-commerce app with React, Node.js, authentication, product management and payment integration.",
+    allImages:          [],
   },
   {
     _id: "fb2",
@@ -37,6 +115,7 @@ const FALLBACK = [
     category:           "Web Application",
     technologies:       ["React", "GSAP", "Node.js"],
     fullDescription:    "Cinematic MERN web app featuring GSAP animations, interactive UI components and modern React architecture.",
+    allImages:          [],
   },
   {
     _id: "fb3",
@@ -49,6 +128,7 @@ const FALLBACK = [
     category:           "Landing Page",
     technologies:       ["HTML", "CSS", "JavaScript"],
     fullDescription:    "High-performance cinematic website built with HTML, CSS, JavaScript for maximum speed and visual impact.",
+    allImages:          [],
   },
   {
     _id: "fb4",
@@ -61,6 +141,7 @@ const FALLBACK = [
     category:           "Dashboard",
     technologies:       ["React", "Tailwind CSS"],
     fullDescription:    "Analytics dashboard with cinematic animations, built for scale, maintainability and developer experience.",
+    allImages:          [],
   },
 ];
 
@@ -73,21 +154,31 @@ const mapProject = (p) => ({
   projectDescription: p.shortDescription || p.description || "",
   projectLink:        p.liveUrl          || null,
   hasLiveUrl:         Boolean(p.liveUrl),
-  category:           p.category         || 'Other',
+  category:           p.category         || "Other",
   technologies:       p.technologies     || [],
   fullDescription:    p.description      || "",
   allImages:          p.images           || [],
 });
 
 const Portfolio = () => {
-  const [projects,      setProjects]      = useState(FALLBACK);
+  /* ── data state ── */
+  const [allProjects,   setAllProjects]   = useState(FALLBACK);
   const [loading,       setLoading]       = useState(true);
   const [error,         setError]         = useState(null);
+  const [activeFilter,  setActiveFilter]  = useState("all");
+
+  /* ── UI interaction state (unchanged) ── */
   const [hoveredIndex,  setHoveredIndex]  = useState(null);
   const [currentIcon,   setCurrentIcon]   = useState(null);
   const [selectedProject, setSelectedProject] = useState(null);
   const [showModal,     setShowModal]     = useState(false);
   const videoRefs = useRef([]);
+
+  /* ── client-side filter — no cap on Portfolio page ── */
+  const projects = useMemo(() => {
+    if (activeFilter === "all") return allProjects;
+    return allProjects.filter((p) => getProjectFilters(p).has(activeFilter));
+  }, [allProjects, activeFilter]);
 
   /* ── fade-in refs (rebuild after each render so new cards are included) ── */
   const fadeRefs  = useRef([]);
@@ -96,7 +187,7 @@ const Portfolio = () => {
     if (el && !fadeRefs.current.includes(el)) fadeRefs.current.push(el);
   };
 
-  /* ── GSAP: re-trigger after data arrives ── */
+  /* ── GSAP: re-trigger after data arrives or filter changes ── */
   useEffect(() => {
     if (loading || fadeRefs.current.length === 0) return;
     fadeRefs.current.forEach((el) => {
@@ -129,11 +220,11 @@ const Portfolio = () => {
         const response = await getProjects({ limit: 100 });
         const list = (response?.data ?? []).filter((p) => p.published);
 
-        setProjects(list.length > 0 ? list.map(mapProject) : FALLBACK);
+        setAllProjects(list.length > 0 ? list.map(mapProject) : FALLBACK);
       } catch (err) {
         console.error("Portfolio fetch error:", err);
         setError("Failed to load projects");
-        setProjects(FALLBACK);
+        setAllProjects(FALLBACK);
       } finally {
         setLoading(false);
       }
@@ -142,19 +233,18 @@ const Portfolio = () => {
     fetchProjects();
   }, []);
 
-  /* ── handle View Live click ── */
+  /* ── handle View Live click (unchanged) ── */
   const handleViewLive = (project, e) => {
     e.preventDefault();
     if (project.hasLiveUrl && project.projectLink) {
-      window.open(project.projectLink, '_blank', 'noopener,noreferrer');
+      window.open(project.projectLink, "_blank", "noopener,noreferrer");
     } else {
-      // No live URL — open detail modal instead
       setSelectedProject(project);
       setShowModal(true);
     }
   };
 
-  /* ── handle eye icon click — always opens detail modal ── */
+  /* ── handle eye icon click — always opens detail modal (unchanged) ── */
   const handleViewDetails = (project, e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -167,7 +257,7 @@ const Portfolio = () => {
     setSelectedProject(null);
   };
 
-  /* ── video hover handlers ── */
+  /* ── video hover handlers (unchanged) ── */
   const handleMouseEnter = (idx) => {
     setHoveredIndex(idx);
     videoRefs.current[idx]?.play().catch(() => {});
@@ -194,6 +284,29 @@ const Portfolio = () => {
         </h1>
       </div>
 
+      {/* ── category filter buttons ── */}
+      {!loading && !error && (
+        <div className="w-full flex flex-wrap justify-center items-center gap-2 sm:gap-3 mt-8 px-2">
+          {FILTERS.map((filter) => {
+            const isActive = activeFilter === filter.id;
+            return (
+              <button
+                key={filter.id}
+                onClick={() => setActiveFilter(filter.id)}
+                aria-pressed={isActive}
+                className={`px-4 sm:px-5 py-2 text-xs sm:text-sm font-semibold border-[1px] transition-all duration-[400ms] ease-in-out cursor-pointer
+                  ${isActive
+                    ? "bg-accent-primary text-text-primary border-[var(--accent-primary)]"
+                    : "bg-transparent text-text-secondary border-[var(--card-border)] hover:text-text-primary hover:border-[var(--accent-primary)]"
+                  }`}
+              >
+                {filter.label}
+              </button>
+            );
+          })}
+        </div>
+      )}
+
       {/* grid */}
       <div className="w-full flex flex-wrap justify-center items-stretch gap-8 mt-10 mb-16">
 
@@ -208,8 +321,20 @@ const Portfolio = () => {
           </div>
 
         ) : projects.length === 0 ? (
-          <div className="text-center py-20 w-full">
-            <p className="text-text-secondary">No projects available yet.</p>
+          /* empty state for filtered categories with no matching projects */
+          <div className="w-full flex flex-col items-center justify-center py-16 gap-3">
+            <p className="text-text-secondary text-base">
+              No projects in this category yet.
+            </p>
+            <button
+              onClick={() => setActiveFilter("all")}
+              className="inline-flex items-center gap-2 px-6 py-2 text-sm font-semibold
+                bg-transparent text-text-secondary border-[1px] border-[var(--card-border)]
+                transition-all duration-[400ms] ease-in-out
+                hover:text-text-primary hover:border-[var(--accent-primary)]"
+            >
+              View All Projects
+            </button>
           </div>
 
         ) : (
@@ -274,7 +399,7 @@ const Portfolio = () => {
                       hover:bg-transparent hover:border-[var(--accent-hover)]
                       cursor-pointer"
                   >
-                    {project.hasLiveUrl ? 'View Live' : 'View Project'}
+                    {project.hasLiveUrl ? "View Live" : "View Project"}
                     <span className="relative w-5 h-5">
                       <ArrowForwardIcon
                         fontSize="small"
