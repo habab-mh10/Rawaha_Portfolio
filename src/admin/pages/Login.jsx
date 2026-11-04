@@ -64,7 +64,7 @@ const Login = () => {
                   required
                   autoComplete="email"
                   className="w-full pl-10 pr-4 py-3 bg-[var(--bg-primary)] border border-card rounded-md text-text-primary placeholder-text-secondary focus:outline-none focus:border-accent-primary transition-colors"
-                  placeholder="ownerrawiporfolio@rawaha.me"
+                  placeholder="example@gmail.com"
                 />
               </div>
             </div>
