@@ -1,1 +1,0 @@
-import{i as e}from"./index-BM8w1qoU.js";const r=async()=>(await e.get("/pricing")).data,c=async a=>(await e.post("/pricing/admin/create",a)).data,o=async(a,s)=>(await e.put(`/pricing/admin/${a}`,s)).data,i=async a=>(await e.delete(`/pricing/admin/${a}`)).data;export{c,i as d,r as g,o as u};
